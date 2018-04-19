@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :categories do
+  resources :categories, except: [:index] do
     resources :products, only: [:index]
   end
 
