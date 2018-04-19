@@ -32,6 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    #should this also destroy all of the ProductCategory records that this category is on first
     Category.destroy(params[:id])
   end
 
