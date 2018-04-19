@@ -26,7 +26,5 @@
     <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
   </div>
 
-  <% f.hidden_field :user_id, value: @user.id %>
-
   <%= f.submit class: "button" %>
 <% end %>
