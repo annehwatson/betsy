@@ -14,24 +14,24 @@
 <body>
   <header>
     <h1>
-      <!-- <%= #image_tag "site-icon.png", alt: "Site logo", class: "logo" %> -->
+      <%= image_tag "site-icon.png", alt: "Site logo", class: "logo" %>
       regrEtsy
     </h1>
     <nav>
-      <ul>
-        <li><%= link_to "Browse", root_path, class: "hollow button" %>
+      <ul class="menu">
+        <li class="menu-item-has-children"><%= link_to "Browse", root_path%>
           <ul>
-            <li><%= link_to "Browse all products", products_path, class: "hollow button" %></li>
-            <li><%= link_to "Browse all categories", categories_path, class: "hollow button" %></li>
+            <li class="sub-menu"><%= link_to "Browse all products", products_path%></li>
+            <li class="sub-menu"><%= link_to "Browse all categories", categories_path%></li>
             <!-- change to live link -->
-            <li><%= link_to "Browse all merchants", root_path, class: "hollow button" %></li>
+            <li class="sub-menu"><%= link_to "Browse all merchants", root_path%></li>
           </ul>
         </li>
-        <li><%= link_to "Register", login_path, class: "hollow button" %></li>
+        <li><%= link_to "Register", login_path%></li>
         <% if session[:user_id] %>
-        <%= link_to "Logout", logout_path, method: :delete, class: "hollow button" %>
+        <%= link_to "Logout", logout_path, method: :delete%>
         <% else %>
-        <%= link_to "Login", login_path, class: "hollow button" %>
+        <%= link_to "Login", login_path%>
         <% end %>
       </li>
     </ul>
