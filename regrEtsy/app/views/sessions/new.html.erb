@@ -1,0 +1,13 @@
+  <%= form_for @user, url: login_path do |u| %>
+  <strong><%= u.label :username %></strong>
+  <%= u.text_field :username %>
+  <strong><%= u.label :password %></strong>
+  <%= u.password_field :password_confirmation %>
+  <%= submit_tag("Log In", class: "button") %>
+<% end %>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>

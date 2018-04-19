@@ -1,0 +1,17 @@
+<h3>Client Summary</h3>
+
+<%= render partial: "layouts/error_messages", locals: { model: @user } %>
+
+<p>Joined site <%= render_date @user.created_at %></p>
+<table>
+<tbody>
+    <% @user.each do |user| %>
+      <tr>
+        <td><%= user.name  %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= render_date product.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
