@@ -9,9 +9,15 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(category_params)
-    if category.save
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created #{@category.name}"
       redirect_to categories_path
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not create #{@category.name}"
+      flash[:messages] = @category.errors.error_messagesrender :new, status: :bad_request
     end
   end
 
@@ -24,22 +30,24 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:id])
-    category.assign_attributes(category_params)
-    if category.save
-      redirect_to category_path(category)
+    @category = Category.find(params[:id])
+    @category.assign_attributes(category_params)
+    if @category.save
+      redirect_to category_path(@category)
     end
   end
 
   def destroy
-    #should this also destroy all of the ProductCategory records that this category is on first
-    Category.destroy(params[:id])
+    @category = Category.find(params[:id])
+    @category.destroy
+    flash[:status] = :success
+    flash[:result_text] = "Successfully destroyed #{@category.name}"
+    redirect_to categories_path
   end
 
   private
 
   def category_params
-    return
     params.require(:category).permit(:name)
   end
 
