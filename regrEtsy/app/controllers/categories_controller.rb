@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if @login_user #maybe admin_user in future?
+    if session[:user_id] #maybe @login_user || @admin_user in future?
       @category.destroy
       flash[:success] = "Successfully destroyed #{@category.name}"
       redirect_to categories_path
