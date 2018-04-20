@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   get '/login', to: 'sessions#new', as: :login
-  post '/login', to: 'sessions#login'
+  # post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout', as: :logout
+
+  get "/auth/:provider/callback", to: "sessions#login"
 end
