@@ -17,6 +17,9 @@
  *= require foundation_and_overrides
 
  */
+h1 {
+font-family: 'Lora', serif;  
+}
 
 h1 img {
   max-height: 50px;
