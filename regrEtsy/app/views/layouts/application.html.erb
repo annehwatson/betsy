@@ -30,6 +30,7 @@
         <li><%= link_to "Register", new_user_path %></li>
         <% if session[:user_id] %>
         <%= link_to "Logout", logout_path, method: :delete%>
+        <%= link_to 'Dashboard', users_path %>
         <% else %>
         <%= link_to "Login", login_path %>
         <% end %>
