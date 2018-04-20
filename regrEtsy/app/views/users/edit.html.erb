@@ -1,4 +1,8 @@
 <h3>Edit Client</h3>
+
+<%= render partial: "layouts/error_messages", locals: { model: @user } %>
+
+<div class="container">
 <%= form_for @user do |u| %>
 <%= u.label :name %>
 <%= u.text_field :name %>
@@ -7,6 +11,7 @@
 <%= u.label :email  %>
 <%= u.text_field :email %>
 <%= u.label :password %>
-<%= u.password_field :password_confirmation %>
+<%= u.password_field :password_confirmation, :pattern => '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' %>
 <%= u.submit "Update", class: "button" %>
 <% end %>
+</div>
