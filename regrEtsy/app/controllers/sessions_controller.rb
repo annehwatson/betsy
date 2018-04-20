@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -10,23 +11,22 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Successfully logged in as existing user #{@user.name}"
     else
-      # use strong params instead on refactor
-      @user = User.new(name: params[:user][:name])
 
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Successfully created new user #{@user.name} with ID #{@user.id}"
-      else
+      # use strong params instead on refactor
+      # @user = User.new(name: params[:user][:name])
+      #
+      # if @user.save
+      #   session[:user_id] = @user.id
+      #   flash[:success] = "Successfully created new user #{@user.name} with ID #{@user.id}"
+      # else
         # flash.now[:status] = :failure
         flash.now[:failure] = "Could not log in"
         @user.errors.messages
         @user.name = "please enter a username"
         render :new, status: :failure
         return
-      end
-
     end
-    redirect_to root_path
+    redirect_to user_path(@user)
   end
 
   def logout

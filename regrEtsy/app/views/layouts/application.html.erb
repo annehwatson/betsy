@@ -27,11 +27,11 @@
             <li class="sub-menu"><%= link_to "Browse all merchants", root_path%></li>
           </ul>
         </li>
-        <li><%= link_to "Register", login_path%></li>
+        <li><%= link_to "Register", new_user_path %></li>
         <% if session[:user_id] %>
         <%= link_to "Logout", logout_path, method: :delete%>
         <% else %>
-        <%= link_to "Login", login_path%>
+        <%= link_to "Login", login_path %>
         <% end %>
       </li>
     </ul>
