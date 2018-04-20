@@ -12,12 +12,10 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:status] = :success
-      flash[:result_text] = "Successfully created #{@category.name}"
+      flash[:success] = "Successfully created #{@category.name}"
       redirect_to categories_path
     else
-      flash[:status] = :failure
-      flash[:result_text] = "Could not create #{@category.name}"
+      flash[:error] = "Could not create #{@category.name}"
       flash[:messages] = @category.errors.error_messagesrender :new, status: :bad_request
     end
   end
@@ -36,13 +34,12 @@ class CategoriesController < ApplicationController
   def destroy
     if @login_user #maybe admin_user in future?
       @category.destroy
-      flash[:status] = :success
-      flash[:result_text] = "Successfully destroyed #{@category.name}"
+      flash[:success] = "Successfully destroyed #{@category.name}"
       redirect_to categories_path
     else
-      flash[:status] = :failure
-      flash[:result_text] = "You do not have permission to delete a category"
+      flash[:error] = "You do not have permission to delete a category"
       #render_401
+      redirect_to categories_path
     end
   end
 
