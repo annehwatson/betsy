@@ -34,10 +34,16 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    flash[:status] = :success
-    flash[:result_text] = "Successfully destroyed #{@category.name}"
-    redirect_to categories_path
+    if @login_user #maybe admin_user in future?
+      @category.destroy
+      flash[:status] = :success
+      flash[:result_text] = "Successfully destroyed #{@category.name}"
+      redirect_to categories_path
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "You do not have permission to delete a category"
+      #render_401
+    end
   end
 
   private
