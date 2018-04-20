@@ -1,12 +1,2 @@
-<h3>New Client</h3>
-<%= form_for @user do |u| %>
-<%= u.label :name %>
-<%= u.text_field :name %>
-<%= u.label :username %>
-<%= u.text_field :username %>
-<%= u.label :email  %>
-<%= u.text_field :email %>
-<%= u.label :password %>
-<%= u.password_field :password_confirmation %>
-<%= u.submit "Log In", class: "button" %>
-<% end %>
+<%= render partial: "layouts/error_messages", locals: { model: @user } %>
+<%= render partial: "form", locals: {page_title: "New Vendor", submit: "Add!"} %>

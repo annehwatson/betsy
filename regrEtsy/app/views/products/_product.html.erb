@@ -1,0 +1,25 @@
+<section class="product-item">
+  <h3><%= item.name %></h3>
+  <%= image_url(item) %>
+  <ul>
+    <li>
+    Description:  <%= item.description %>
+    </li>
+    <li>
+    Categories: add categories here as links
+    </li>
+    <li>
+      Price: <%= item.price %>
+    </li>
+    <li>
+    Quantity:  <%= item.stock %>
+    </li>
+    <li>Add to cart: <%= number_field_tag 'quantity', width: 50 %></li>
+  </ul>
+  <article>
+    <section>
+      <h4> rating </h4>
+      <p> reviews </p>
+    </section>
+  </article>
+</section>
