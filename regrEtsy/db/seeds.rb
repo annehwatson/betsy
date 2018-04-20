@@ -1,3 +1,6 @@
+User.create!([
+  {name: nil, username: "Jane Doe", email: nil, password: "verysecure", uid: nil, provider: nil}
+])
 Category.create!([
   {name: "Time Machines"},
   {name: "Pharmaceuticals"},
