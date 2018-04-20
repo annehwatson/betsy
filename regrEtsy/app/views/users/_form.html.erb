@@ -1,3 +1,4 @@
+
 <h3><%= page_title %></h3>
 
 <div class="container">
@@ -9,7 +10,7 @@
 <%= u.label :email  %>
 <%= u.text_field :email %>
 <%= u.label :password %>
-<%= u.password_field :password_confirmation %>
+<%= u.password_field :password_confirmation, :pattern => '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' %>
 <%= u.submit submit, class: "button" %>
 <% end %>
 </div>
