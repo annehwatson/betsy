@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :find_category, only: [:show, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
@@ -21,16 +22,11 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def show
-    @category = Category.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @category = Category.find(params[:id])
     @category.assign_attributes(category_params)
     if @category.save
       redirect_to category_path(@category)
@@ -38,7 +34,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     flash[:status] = :success
     flash[:result_text] = "Successfully destroyed #{@category.name}"
@@ -49,6 +44,12 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def find_category
+    @category = Category.find_by(id: params[:id])
+
+    head :not_found unless @category
   end
 
 end
