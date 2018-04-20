@@ -87,7 +87,7 @@ describe CategoriesController do
         must_respond_with :success
       end
 
-      it "sends not_found if the book does not exist" do
+      it "sends not_found if the category does not exist" do
         category_id = Category.last.id + 1
 
         get edit_category_path(category_id)

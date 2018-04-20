@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+      @category = Category.new
   end
 
   def create
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     else
       flash[:error] = "Could not create #{@category.name}"
-      flash[:messages] = @category.errors.error_messagesrender :new, status: :bad_request
+      render :new, status: :bad_request
     end
   end
 
@@ -28,6 +28,8 @@ class CategoriesController < ApplicationController
     @category.assign_attributes(category_params)
     if @category.save
       redirect_to category_path(@category)
+    else
+      render :edit, status: :bad_request
     end
   end
 
