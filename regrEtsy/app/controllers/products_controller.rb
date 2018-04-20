@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :delete]
+  before_action :require_login, except: [:index, :show]
 
 
   def root
@@ -16,6 +17,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.user_id = @user.id
     if @product.save
       flash[:success] = "Product added successfully"
       redirect_to products_path
