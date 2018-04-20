@@ -10,7 +10,7 @@
 <%= u.label :email  %>
 <%= u.text_field :email %>
 <%= u.label :password %>
-<%= u.password_field :password_confirmation, :pattern => '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' %>
+<%= u.password_field :password_confirmation, :pattern => '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', message: "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" %>
 <%= u.submit submit, class: "button" %>
 <% end %>
 </div>
