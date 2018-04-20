@@ -7,6 +7,9 @@ Category.create!([
   {name: "Personal Care"},
   {name: "Lifestyle"}
 ])
+User.create!([
+  {name: nil, username: "Jane Doe", email: nil, password: "verysecure", uid: nil, provider: nil}
+])
 Product.create!([
   {name: "Kat Von D Tattoo Concealer ", description: "A highly-pigmented, full-coverage, transfer- and water-resistant concealer. ", price: 25.0, stock: 3, url: "https://www.amazon.com/Kat-Von-Lock-Tattoo-Concealer/dp/B00HC2IYDE", user_id: nil, retired: false},
   {name: "Aspirin", description: "Pill for hangover", price: 14.99, stock: 5, url: "", user_id: nil, retired: false},
