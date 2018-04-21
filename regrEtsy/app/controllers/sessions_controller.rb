@@ -4,19 +4,27 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
-  def login
-    auth_hash = request.env['omniauth.auth']
+  def create
+    @auth_hash = request.env['omniauth.auth']
+    @user = User.find_by(uid: @auth_hash['uid'], provider: @auth_hash['provider'])
 
-    @user = User.login(auth_hash)
-    if @user.save
+    if @user
       session[:user_id] = @user.id
-      flash[:success] = "User #{@user.username} successfully logged in"
-      redirect_to root_path
+      flash[:success] = "Welcome #{@user.name}"
     else
-      flash[:error] = "Could not log in"
-      redirect_to root_path
+      @user = User.new(
+        uid: @auth_hash['uid'], provider: @auth_hash['provider'], name: @auth_hash['info']['nickname'], email: @auth_hash['info']['email'])
+
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:success] = "Welcome #{@user.name}"
+      else
+        flash[:error] = "Unable to save user!!!"
+      end
     end
+    redirect_to root_path
   end
+
 
   def logout
     session[:user_id] = nil
@@ -25,28 +33,3 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
-
-
-
-    # @user = User.find_by(name: params[:user][:name])
-    #
-    # if @user
-    #   session[:user_id] = @user.id
-    #   flash[:success] = "Successfully logged in as existing user #{@user.name}"
-    #
-    # elsif @user.nil?
-    #     flash[:alert] = "Must sign up to login"
-    #     redirect_to new_user_path(@user)
-    # else
-    #   @user = User.new(name: params[:user][:name])
-    #
-    #   if @user.save
-    #     session[:user_id] = @user.id
-    #     flash[:success] = "Successfully created new user #{@user.name} with ID #{@user.id}"
-      # else
-      #   flash.now[:failure] = "Could not log in"
-      #   @user.errors.messages
-      #   @user.name = "please enter a username"
-      #   render :new, status: :failure
-      #   return
-      # end

@@ -29,10 +29,11 @@
         </li>
         <li><%= link_to "Register", new_user_path %></li>
         <% if session[:user_id] %>
+        <%= print user_params %>
         <%= link_to "Logout", logout_path, method: :delete%>
         <%= link_to 'Dashboard', root_path %>
         <% else %>
-          <%= link_to "Login", "/auth/github", class: "button" %>
+          <%= link_to "Login", login_path, class: "button" %>
         <% end %>
       </li>
     </ul>

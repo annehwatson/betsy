@@ -1,7 +1,7 @@
 <h3><%= page_title %></h3>
 
 <div class="container">
-<%= form_for @user do |u| %>
+<%= form_for @user, url: '/auth/github' do |u| %>
 <%= u.label :name %>
 <%= u.text_field :name %>
 <%= u.label :username %>
