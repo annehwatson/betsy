@@ -27,15 +27,17 @@
             <li class="sub-menu"><%= link_to "Browse all merchants", root_path%></li>
           </ul>
         </li>
-
         <% if session[:user_id] %>
-        <%= link_to "Logged in as #{@login_user.name}", user_path(@login_user), class: "button" %>
-        <%= link_to "Logout", logout_path, method: :delete%>
-        <%= link_to 'Dashboard', user_path(@login_user) %>
+        <li class="menu-item-has-children"><%= link_to "Logged in as #{@login_user.name}", user_path(@login_user) %>
+          <ul>
+            <li><%= link_to 'Dashboard', user_path(@login_user) %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete%></li>
+          </ul>
+        </li>
         <% else %>
-          <%= link_to "Login/SignUp with Github", "/auth/github", class: "button" %>
+        <li><%= link_to "Login/SignUp with Github", "/auth/github", class: "button" %></li>
         <% end %>
-      </li>
+      </ul>
     </ul>
   </nav>
 </header>

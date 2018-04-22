@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         @user = User.new(
           name: auth_hash['info']['name'],
           email: auth_hash['info']['email'],
-          username: (auth_hash['info']['email']).split('@'),
+          username: user_name(auth_hash['info']['email']),
           uid: auth_hash[:uid],
           provider: ['github'])
 

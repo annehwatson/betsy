@@ -18,7 +18,7 @@
 
  */
 h1 {
-font-family: 'Lora', serif;  
+font-family: 'Lora', serif;
 }
 
 h1 img {
@@ -27,6 +27,11 @@ h1 img {
 
 nav ul {
   list-style-type: none;
+  position: fixed;
+  width: 100%;
+  display: block;
+  background: whitesmoke;
+  z-index: 10;
 }
 
 @media (min-width: 800px) {

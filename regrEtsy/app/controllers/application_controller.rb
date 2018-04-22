@@ -8,12 +8,18 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+
 private
 
   def find_user
     if session[:user_id]
       @login_user = User.find_by(id: session[:user_id])
     end
+  end
+
+  def user_name(auth_hash)
+    email = auth_hash.split('@')
+    return email[0]
   end
 
 end
