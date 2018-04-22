@@ -1,11 +1,10 @@
-<%= render partial: "layouts/error_messages", locals: { model: @user } %>
+ <%= render partial: "layouts/error_messages", locals: { model: @user } %>
 
 <div class="container">
 <%= form_for @user, url: login_path do |u| %>
 <%= u.label :username %>
 <%= u.text_field :username %>
-<%= u.label :password %>
-<%= u.password_field :password_confirmation, :pattern => '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', message: "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" %>
+
 <%= u.submit "Login", class: "button" %>
 <% end %>
 </div>

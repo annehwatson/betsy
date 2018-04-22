@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
-  get '/auth/github', to: 'sessions#create', as: :login
-  # post '/login', to: 'sessions#login'
-  delete '/logout', to: 'sessions#logout', as: :logout
-  get "/auth/:provider/callback", to: "sessions#create", as: :auth_callback
+  get '/login', to: 'sessions#new', as: 'login'
+  delete '/logout', to: 'sessions#logout', as: 'logout'
+  get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
 end
