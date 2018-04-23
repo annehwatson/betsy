@@ -289,6 +289,7 @@
       "/Users/ariherman/Documents/Ada/Rails/week10/betsy/regrEtsy/app/controllers/sessions_controller.rb": [
         1,
         null,
+        null,
         1,
         0,
         null,
@@ -326,7 +327,6 @@
         1,
         1,
         null,
-        4,
         null,
         null,
         1,
@@ -360,6 +360,7 @@
       ],
       "/Users/ariherman/Documents/Ada/Rails/week10/betsy/regrEtsy/app/controllers/users_controller.rb": [
         1,
+        null,
         null,
         1,
         1,
@@ -471,6 +472,6 @@
         0
       ]
     },
-    "timestamp": 1524511422
+    "timestamp": 1524514506
   }
 }

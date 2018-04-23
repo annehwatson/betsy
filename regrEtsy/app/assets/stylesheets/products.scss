@@ -5,15 +5,19 @@
 .product-item {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   background-color: whitesmoke;
-  border: 1px grey;
+  border: 1px solid grey;
 }
 
 .product-item > article {
-  border: 1px grey;
   width: 200px;
   line-height: 75px;
   margin: 10px;
+}
+
+.product-reviews {
+  width: 400px;
 }
 
 .parallax-1 {
