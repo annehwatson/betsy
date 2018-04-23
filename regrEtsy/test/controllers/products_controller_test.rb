@@ -1,6 +1,11 @@
 require "test_helper"
 
 describe ProductsController do
+  describe "authenticated user" do
+    before do
+      @user = User.first
+      #login(User.first)
+    end
 
     describe 'root' do
       it 'should get root path' do
@@ -37,10 +42,7 @@ describe ProductsController do
         must_respond_with :success
       end
 
-      it "should get a category's products index" do
-        #TODO move this to category tests
 
-      end
 
       it "should get a user's product index" do
         get user_products_path() # TODO <-- fill in these parens?
@@ -109,4 +111,5 @@ describe ProductsController do
     end # ends describe 'create' do
 
 
+  end # ends 'describe "authenticated user" do'
 end # ends 'describe ProductsController do'
