@@ -22,8 +22,6 @@ class ProductsController < ApplicationController
       flash[:success] = "Product added successfully"
       redirect_to products_path
     else
-      # Validations failed! What do we do?
-      # This flash message is redundant but for demonstration purposes
       flash.now[:failure] = "Cound not add product"
       render :new, status: :bad_request
     end
@@ -51,7 +49,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    return params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id, :quantity)
+     params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id, :quantity)
   end
 
   def find_product

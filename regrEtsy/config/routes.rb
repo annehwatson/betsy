@@ -17,4 +17,9 @@ Rails.application.routes.draw do
   post '/cart', to: 'carts#add_to_cart', as: :add_to_cart
   post '/add', to: 'sessions#add_cart_product', as: :add_product
 
+  get 'carts/:id/checkout', to: 'carts#checkout', as: :checkout
+  post 'carts/:id/checkout', to: 'carts#finalize'
+
+  get 'order/:id', to: 'carts#order_details', as: :order
+
 end
