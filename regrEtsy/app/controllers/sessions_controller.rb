@@ -33,9 +33,9 @@ class SessionsController < ApplicationController
 
       else
         flash[:error] = "Could not log in"
-        redirect_to root_path
-      end
 
+      end
+      redirect_to root_path
     end
   end
 
@@ -50,5 +50,3 @@ class SessionsController < ApplicationController
       redirect_to root_path
     end
   end
-
-end

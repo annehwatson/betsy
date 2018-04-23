@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_cart
+  before_action :set_order
   before_action :find_product
   before_action :find_user
 
