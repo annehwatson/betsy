@@ -1,16 +1,16 @@
 class CartsController < ApplicationController
   def show
-    @cart
-    @products = @cart.products
+    @order
+    @products = @order.products
   end
 
   def edit; end
 
   def update
-    @cart.assign_attributes(product_params)
+    @order.assign_attributes(product_params)
 
-    if @cart.save
-      redirect_to cart_path(@cart)
+    if @order.save
+      redirect_to cart_path(@order)
     else
       render :edit, status: :bad_request
     end

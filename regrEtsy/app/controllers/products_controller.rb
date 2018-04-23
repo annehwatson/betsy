@@ -8,7 +8,12 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @products = Product.all
+    else
+      @products = Product.all
+    end
   end
 
   def new
@@ -49,7 +54,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-     params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id, :quantity)
+    params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id, :quantity)
   end
 
   def find_product
