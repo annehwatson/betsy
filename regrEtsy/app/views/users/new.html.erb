@@ -1,2 +1,12 @@
-<%= render partial: "layouts/error_messages", locals: { model: @user } %>
-<%= render partial: "form", locals: {page_title: "New Vendor", submit: "Add!"} %>
+<h3><%= page_title %></h3>
+
+<div class="container">
+<%= form_for @user, url: login_path do |u| %>
+<%= u.label :name %>
+<%= u.text_field :name %>
+<%= u.label :username %>
+<%= u.text_field :username %>
+
+<%= u.submit submit, class: "button" %>
+<% end %>
+</div>

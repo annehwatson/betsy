@@ -2,10 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
   before_action :find_product
-
-  def put_product_in_cart
-
-  end
+  before_action :find_user
 
   private
   def require_login
@@ -27,4 +24,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_user
+    if session[:user_id]
+      @login_user = User.find_by(id: session[:user_id])
+    end
+  end
+
+  def render_404
+    # DPR: this will actually render a 404 page in production
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def user_name(auth_hash)
+    email = auth_hash.split('@')
+    return email[0]
+  end
 end

@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   def show
     @cart
+    @products = @cart.products
   end
 
   def edit; end

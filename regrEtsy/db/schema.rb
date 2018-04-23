@@ -99,10 +99,10 @@ ActiveRecord::Schema.define(version: 20180423131605) do
     t.string "username"
     t.string "email"
     t.string "password"
-    t.string "uid"
-    t.string "provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uid", null: false
+    t.string "provider", null: false
   end
 
   add_foreign_key "products", "users"

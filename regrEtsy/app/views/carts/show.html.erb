@@ -1,0 +1,10 @@
+<ul class="cart-products">
+<%= @products.each do |product| %>
+<li><%= image_url(product), class: "thumbnail" %></li>
+<li><%= product.name %></li>
+<li>quantity</li>
+<% end %>
+</ul>
+
+
+<%= link_to edit_cart_path(@cart), "edit", class: "button" %>

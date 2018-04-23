@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
-  get '/login', to: 'sessions#new', as: :login
-  post '/login', to: 'sessions#login'
-  delete '/logout', to: 'sessions#logout', as: :logout
+  get '/login', to: 'sessions#new', as: 'login'
+  delete '/logout', to: 'sessions#logout', as: 'logout'
+  get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
 
   resources :cart, only: [:show, :edit, :update]
   post '/cart', to: 'carts#add_to_cart', as: :add_to_cart
