@@ -24,36 +24,37 @@
 // .img-3 {
 //   background-image: url("shoppingcart.jpg")
 // }
-//
-// .img-1, .img-2, .img-3 {
-//   position: relative;
-//   opacity: 0.65;
-//   background-attachment: fixed;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
-//
-// .caption {
-//   position: absolute;
-//   left: 0;
-//   top: 50%;
-//   width: 100%;
-//   text-align: center;
-//   color: #000;
-//   font-size: 2em;
-// }
 
 .parallax {
     /* The image used */
-    background-image: url('assets/images/ughmug.jpg');
-
-    /* Full height */
-    height: 100%;
-
-    /* Create the parallax scrolling effect */
+    background-image: image-url('ughmug.jpg');
+    // background-image: image-url('Failed.jpg');
+    width: 100vw;
+    height: 500px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+    opacity: 0.65;
+}
+
+.caption-1 {
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 2em;
+}
+
+.caption-2 {
+  position: absolute;
+  left: 0;
+  top: 90%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 2em;
 }
