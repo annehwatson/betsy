@@ -32,7 +32,12 @@ class CategoriesController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    if !@login_user
+      flash[:error] = "You must be logged in to update a category"
+      redirect_to category_path(@category)
+    end
+  end
 
   def update
     if @login_user
