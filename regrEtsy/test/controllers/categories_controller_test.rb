@@ -177,7 +177,7 @@ describe CategoriesController do
 
     it "rejects requests for new category form" do
       get new_category_path
-      must_respond_with :unauthorized
+      must_respond_with :redirect
     end
 
     it "rejects requests to create a category" do
@@ -196,7 +196,7 @@ describe CategoriesController do
 
     it "rejects requests for edit category form" do
       get edit_category_path(Category.first)
-      must_respond_with :unauthorized
+      must_respond_with :redirect, status: :unauthorized
     end
 
     it "rejects requests to update a category" do
