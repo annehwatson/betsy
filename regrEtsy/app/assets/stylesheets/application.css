@@ -213,3 +213,9 @@ nav ul {
     left: 200%;
     bottom: 0;
   }
+
+footer {
+  font-size: 0.5em;
+  display: flex;
+  justify-content: flex-end;
+}

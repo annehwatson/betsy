@@ -8,9 +8,14 @@
   // background-position: top;
   font-weight: bold;
   color: #374785;
+  background-color: whitesmoke;
+  border: 1px solid lightgrey;
+  width: 400px;
 }
 
 .user-info p {
+  display: flex;
+  align-items: center;
   background-color: whitesmoke;
   max-width: 300px;
   text-align: center;
