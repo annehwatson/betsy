@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
           if @user.save
             session[:user_id] = @user.id
-            flash[:success] = "User successfully created and logged in"
+            flash[:success] = "User #{@user.name} logged in successfully"
             redirect_to root_path
           else
             flash[:alert] = "User not created"
@@ -52,30 +52,3 @@ class SessionsController < ApplicationController
   end
 
 end
-
-#   auth_hash = request.env['omniauth.auth']
-#
-#   @user = User.find_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
-#
-#   if @user
-#     session[:user_id] = @user.id
-#     flash[:result_text] = "Welcome #{@user.username}"
-#
-#   else
-#     @user = User.new(
-#       uid: auth_hash['uid'],
-#       provider: auth_hash['provider'],
-#       name: auth_hash['info']['username'],
-#       username: auth_hash['info']['username'],
-#       email: auth_hash['info']['email'])
-#     @user.save
-#
-#     if @user.save
-#       session[:user_id] = @user.id
-#       flash[:result_text] = "Welcome #{@user.username}"
-#     else
-#       flash[:result_text] = "Unable to save user!!!"
-#     end
-#   end
-#   redirect_to root_path
-# end

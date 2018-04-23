@@ -5,5 +5,5 @@ anne:
   username: "annehwatson"
   email: "anne@email.com"
   password: "helloworld"
-  uid: nil
-  provider: nil
+  uid: 17463587
+  provider: "github"

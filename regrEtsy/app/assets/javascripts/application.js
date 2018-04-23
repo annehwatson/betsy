@@ -12,9 +12,19 @@
 //= require jquery
 
 //
-//= require rails-ujs
-//= require foundation
+= require rails-ujs
+= require foundation
 //= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function(){
+  $('.slides').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear'
+  });
+});

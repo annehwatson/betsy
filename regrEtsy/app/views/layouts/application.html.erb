@@ -9,6 +9,9 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:500" rel="stylesheet">
 </head>
 
 <body>
@@ -37,8 +40,15 @@
         <% else %>
         <li><%= link_to "Login/SignUp with Github", "/auth/github", class: "button" %></li>
         <% end %>
+      <li>
+        <div class="icon-cart">
+          <div class="cart-line-1"></div>
+          <div class="cart-line-2"></div>
+          <div class="cart-line-3"></div>
+          <div class="cart-wheel"></div>
+        </div>
+      </li>
       </ul>
-    </ul>
   </nav>
 </header>
 
@@ -48,7 +58,13 @@
   <% end %>
 </section>
 
-<%= yield %>
+<main>
+  <%= yield %>
+</main>
+
+<footer class="tag">
+</footer>
+
 
 </body>
 </html>
