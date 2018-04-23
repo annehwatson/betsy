@@ -7,4 +7,9 @@ def sufficient_stock(quantity)
   self.stock >= quantity
 end
 
+def decrement_stock(quantity)
+  self.stock -= quantity
+  self.save
+end
+
 end

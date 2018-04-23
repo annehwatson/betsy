@@ -3,12 +3,16 @@ class CartsController < ApplicationController
     @cart
   end
 
-  def edit
-    @cart
-  end
+  def edit; end
 
-  def updated
-    @cart
+  def update
+    @cart.assign_attributes(product_params)
+
+    if @pcart.save
+      redirect_to cart_path(@cart)
+    else
+      render :edit, status: :bad_request
+    end
   end
 
   def add_to_cart
@@ -17,13 +21,15 @@ class CartsController < ApplicationController
     if @product.sufficient_stock(quantity)
       quantity.times do
         @cart.products << @product
-        @product.stock -= 1
-        @product.save
       end
 
       if @cart.save
         flash[:status] = :success
         flash[:result_text] = "Successfully added #{quantity} #{@product.name} to cart"
+        #this logic may belong in order, should we
+        #decrement when added to cart, or when an order
+        #is marked complete?
+        @product.decrement_stock(quantity)
       end
     else
       flash[:result_text] = "Could not add item to cart"
