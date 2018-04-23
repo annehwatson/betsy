@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+
   def new
     @user = User.new
   end
@@ -32,12 +33,11 @@ class SessionsController < ApplicationController
         flash[:success] = "Logged in successfully"
         redirect_to root_path
       end
-      
+
     else
       flash[:error] = "Could not log in"
       redirect_to root_path
     end
-    redirect_to user_path(@user)
   end
 
   def logout

@@ -25,6 +25,10 @@ body {
   font-family: 'Gothic A1', sans-serif;
 }
 
+body ul {
+  list-style-type: none;
+}
+
 h1 img {
   max-height: 50px;
 }

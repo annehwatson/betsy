@@ -2,28 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// .parallax {
-//     /* The image used */
-//     /* Set a specific height */
-//     min-height: 100%;
-//     /* Create the parallax scrolling effect */
-//     background-attachment: fixed;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-// }
-//
-// .img-1 {
-//   background-image: url("ughmug.jpg")
-// }
-//
-// .img-2 {
-//   background-image: url("Failed.jpg")
-// }
-//
-// .img-3 {
-//   background-image: url("shoppingcart.jpg")
-// }
+.product-item {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: whitesmoke;
+  border: 1px grey;
+}
+
+.product-item > article {
+  border: 1px grey;
+  width: 200px;
+  line-height: 75px;
+  margin: 10px;
+}
 
 .parallax-1 {
     /* The image used */
@@ -64,8 +55,6 @@ div {
   color: #000;
   font-size: 2em;
 }
-
-
 
 .caption-2 {
   position: absolute;
