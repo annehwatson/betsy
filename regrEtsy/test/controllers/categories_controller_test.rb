@@ -3,11 +3,15 @@ require "test_helper"
 describe CategoriesController do
   describe "authenticated user" do
     before do
-      @user = User.first
-      #login(User.first)
+      # @user = User.first
+      login(User.first)
     end
 
     describe "index" do
+      it "should get a category's products index" do
+        #TODO move this to category tests
+      end
+
       it "sends a success respond when there are many categories" do
         Category.count.must_be :>, 0
 
@@ -146,7 +150,7 @@ describe CategoriesController do
 
         delete category_path(category_id)
 
-        must_respond_with :success
+        must_respond_with :redirect
         must_redirect_to categories_path
 
         Category.count.must_equal old_category_count - 1
@@ -167,10 +171,13 @@ describe CategoriesController do
   end
 
   describe "guest user" do
+    it "should get a category's products index" do
+      #TODO move this to category tests
+    end
 
     it "rejects requests for new category form" do
       get new_category_path
-      must_respond_with :unauthorized
+      must_respond_with :redirect
     end
 
     it "rejects requests to create a category" do
@@ -189,7 +196,7 @@ describe CategoriesController do
 
     it "rejects requests for edit category form" do
       get edit_category_path(Category.first)
-      must_respond_with :unauthorized
+      must_respond_with :redirect, status: :unauthorized
     end
 
     it "rejects requests to update a category" do
