@@ -7,7 +7,7 @@ describe SessionsController do
       user = users(:anne)
 
       #Action
-      log_in(user, :github)
+      login(user)
       #Assert
       must_respond_with :redirect
       must_redirect_to root_path
@@ -19,7 +19,8 @@ describe SessionsController do
       start_count = User.count
       user = User.new username: "Greg", provider: 'github', email: 'RapMonster@naver.com'
       user.uid = 901
-      log_in(user, :github)
+
+      login(user)
 
       #Assert
       must_respond_with :redirect
@@ -30,12 +31,43 @@ describe SessionsController do
     end
 
     it "can log a user out" do
-      log_in(users(:anne), :github)
-      session[:user_id].must_equal users(:carl).id
+      login(users(:anne))
+      session[:user_id].must_equal users(:anne).id
 
       get logout_path
       must_respond_with :redirect
       must_redirect_to root_path
     end
+
+    it 'does not log in if the user data is invalid' do
+      # Validations fails
+      user = User.new(
+        uid: 99999,
+        provider: "github",
+        email: nil,
+        name: nil)
+
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+
+      get auth_callback_path(:github)
+
+      must_respond_with :error
+      must_redirect_to root_path
+      session[:user_id].must_equal nil
+    end
+    it 'does not log in with insufficient data' do
+      start_count = User.count
+
+      user = User.new(
+        provider: "github",
+        email: 'something@adadevelopersacademy.org',
+        name: 'something')
+
+      login(user)
+
+      User.count.must_equal start_count
+      # Auth hash doesn not include a uid
+    end
+
   end
 end

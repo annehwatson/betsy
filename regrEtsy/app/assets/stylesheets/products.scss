@@ -2,14 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.parallax {
-    /* The image used */
-    background-image: url("/images/ughmug.jpg");
-    /* Set a specific height */
-    // max-height: 300px;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+// .parallax {
+//     /* The image used */
+//     /* Set a specific height */
+//     min-height: 100%;
+//     /* Create the parallax scrolling effect */
+//     background-attachment: fixed;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+
+.img-1 {
+  background-image: url("ughmug.jpg")
+}
+
+.img-2 {
+  background-image: url("Failed.jpg")
+}
+
+.img-3 {
+  background-image: url("shoppingcart.jpg")
+}
+
+.img-1, .img-2, .img-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 2em;
 }
