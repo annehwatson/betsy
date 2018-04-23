@@ -2,7 +2,8 @@
 <% @products.each do |product| %>
 <li><%= image_url(product) %></li>
 <li><%= product.name %></li>
-<li>qty: <%= @cart.products.where(id: product.id).count%></li>
+
+<li>qty: <%= Orderitem.find_by(product_id: product.id).quantity%></li>
 <% end %>
 </ul>
 

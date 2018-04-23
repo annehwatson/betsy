@@ -20,10 +20,9 @@ class CartsController < ApplicationController
     flash[:status] = :failure
     quantity = params[:quantity].to_i
     if @product.sufficient_stock(quantity)
-      @cart.products << @product
-      @cart.products.last.quantity = quantity
+      orderitem = Orderitem.new(product: @product, order_id: @cart.id, quantity: quantity)
 
-      if @cart.save
+      if orderitem.save
         flash[:status] = :success
         flash[:result_text] = "Successfully added #{quantity} #{@product.name} to cart"
         #this logic may belong in order, should we
@@ -33,7 +32,7 @@ class CartsController < ApplicationController
       end
     else
       flash[:result_text] = "Could not add item to cart"
-      flash[:messages] = @cart.errors.messages
+      flash[:messages] = orderitem.errors.messages
     end
 
     redirect_back fallback_location: product_path(@product)

@@ -10,20 +10,6 @@ class ApplicationController < ActionController::Base
     head :unauthorized unless @user
   end
 
-  def set_cart
-    @cart = Cart.find(session[:cart_id])
-  rescue ActiveRecord::RecordNotFound
-    @cart = Cart.create
-    session[:cart_id] = @cart.id
-  end
-
-  def find_product
-    if params[:product_id]
-      @product = Product.find_by(id: params[:product_id])
-      head :not_found unless @product
-    end
-  end
-
   def find_user
     if session[:user_id]
       @login_user = User.find_by(id: session[:user_id])
@@ -39,4 +25,19 @@ class ApplicationController < ActionController::Base
     email = auth_hash.split('@')
     return email[0]
   end
+
+  def set_cart
+    @cart = Order.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    @cart = Order.create(status: :pending)
+    session[:cart_id] = @cart.id
+  end
+
+  def find_product
+    if params[:product_id]
+      @product = Product.find_by(id: params[:product_id])
+      head :not_found unless @product
+    end
+  end
+
 end
