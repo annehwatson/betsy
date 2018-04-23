@@ -27,7 +27,7 @@
             <li class="sub-menu"><%= link_to "Browse all merchants", root_path%></li>
           </ul>
         </li>
-        <% if session[:user_id] %>
+        <% if @login_user %>
         <li class="menu-item-has-children"><%= link_to "Logged in as #{@login_user.name}", user_path(@login_user) %>
           <ul>
             <li><%= link_to 'Dashboard', user_path(@login_user) %></li>
