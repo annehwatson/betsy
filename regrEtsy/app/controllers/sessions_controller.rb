@@ -47,17 +47,6 @@ class SessionsController < ApplicationController
       flash[:error] = "User was not logged out successfully"
       redirect_to root_path
     end
-
-    def logout
-      if session[:user_id]
-        session[:user_id] = nil
-        # session.delete([:user_id])
-        flash[:result_text] = "Successfully logged out"
-        redirect_to root_path
-      else
-        flash[:error] = "User was not logged out successfully"
-        redirect_to root_path
-      end
-    end
-
   end
+
+end
