@@ -4,7 +4,7 @@
 
 <% @categories.each do |category| %>
   <li>
-    <%= link_to(category.name, category_path(category)) %>
+    <%= link_to(category.name, category_products_path(category)) %>
     <%= link_to("Edit", edit_category_path(category)) %>
     <%= link_to("Delete", category_path(category), method: :delete, data: { confirm: "Are you sure you want to delete the category #{ category.name}" }) %>
   </li>
