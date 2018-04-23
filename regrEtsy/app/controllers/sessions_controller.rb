@@ -4,36 +4,51 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
-  def login
-    @user = User.find_by(name: params[:user][:name])
+  def create
+    auth_hash = request.env['omniauth.auth']
 
-    if @user
-      session[:user_id] = @user.id
-      flash[:success] = "Successfully logged in as existing user #{@user.name}"
-      # if @user.nil?
-      #   flash[:alert] = "Must sign up to login"
-      #   redirect_to new_user_path(@user)
-    else
-      @user = User.new(name: params[:user][:name])
+    if auth_hash['uid']
+      @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
 
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Successfully created new user #{@user.name} with ID #{@user.id}"
+      if @user.nil?
+        @user = User.new(
+          name: auth_hash['info']['name'],
+          email: auth_hash['info']['email'],
+          username: user_name(auth_hash['info']['email']),
+          uid: auth_hash[:uid],
+          provider: ['github'])
+
+          if @user.save
+            session[:user_id] = @user.id
+            flash[:success] = "User #{@user.name} logged in successfully"
+            redirect_to root_path
+          else
+            flash[:alert] = "User not created"
+            redirect_to root_path
+          end
+          # User doesn't match anything in the DB
+          # Attempt to create a new user
       else
-        flash.now[:failure] = "Could not log in"
-        @user.errors.messages
-        @user.name = "please enter a username"
-        render :new, status: :failure
-        return
+        session[:user_id] = @user.id
+        flash[:success] = "Logged in successfully"
+        redirect_to root_path
       end
-      redirect_to user_path(@user)
+      else
+        flash[:error] = "Could not log in"
+        redirect_to root_path
     end
   end
 
   def logout
-    session[:user_id] = nil
-    # session.delete([:user_id])
-    flash[:success] = "Successfully logged out"
-    redirect_to root_path
+    if session[:user_id]
+      session[:user_id] = nil
+      # session.delete([:user_id])
+      flash[:result_text] = "Successfully logged out"
+      redirect_to root_path
+    else
+      flash[:error] = "User was not logged out successfully"
+      redirect_to root_path
+    end
   end
+
 end

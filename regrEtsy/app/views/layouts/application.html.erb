@@ -27,15 +27,25 @@
             <li class="sub-menu"><%= link_to "Browse all merchants", root_path%></li>
           </ul>
         </li>
-        <li><%= link_to "Register", new_user_path %></li>
         <% if session[:user_id] %>
-        <%= link_to "Logout", logout_path, method: :delete%>
-        <%= link_to 'Dashboard', users_path %>
+        <li class="menu-item-has-children"><%= link_to "Logged in as #{@login_user.name}", user_path(@login_user) %>
+          <ul>
+            <li><%= link_to 'Dashboard', user_path(@login_user) %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete%></li>
+          </ul>
+        </li>
         <% else %>
-        <%= link_to "Login", login_path %>
+        <li><%= link_to "Login/SignUp with Github", "/auth/github", class: "button" %></li>
         <% end %>
+      <li>
+        <div class="icon-cart">
+          <div class="cart-line-1"></div>
+          <div class="cart-line-2"></div>
+          <div class="cart-line-3"></div>
+          <div class="cart-wheel"></div>
+        </div>
       </li>
-    </ul>
+      </ul>
   </nav>
 </header>
 
@@ -45,7 +55,14 @@
   <% end %>
 </section>
 
-<%= yield %>
+<main>
+  <%= yield %>
+</main>
+
+<footer>
+  &copy Ada Developers Academy
+</footer>
+
 
 </body>
 </html>
