@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 
-
   def new
     @user = User.new
   end
@@ -27,17 +26,18 @@ class SessionsController < ApplicationController
           end
           # User doesn't match anything in the DB
           # Attempt to create a new user
+        else
+          session[:user_id] = @user.id
+          flash[:success] = "Logged in successfully"
+          redirect_to user_path(@user)
+        end
+
       else
-        session[:user_id] = @user.id
-        flash[:success] = "Logged in successfully"
+        flash[:error] = "Could not log in"
         redirect_to root_path
       end
 
-    else
-      flash[:error] = "Could not log in"
-      redirect_to root_path
     end
-    redirect_to root_path
   end
 
   def logout
@@ -50,17 +50,6 @@ class SessionsController < ApplicationController
       flash[:error] = "User was not logged out successfully"
       redirect_to root_path
     end
-
-    def logout
-      if session[:user_id]
-        session[:user_id] = nil
-        # session.delete([:user_id])
-        flash[:result_text] = "Successfully logged out"
-        redirect_to root_path
-      else
-        flash[:error] = "User was not logged out successfully"
-        redirect_to root_path
-      end
-    end
-
   end
+
+end
