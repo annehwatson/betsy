@@ -209,11 +209,3 @@ nav ul {
     left: 200%;
     bottom: 0;
   }
-
-footer {
-  background-image: url('/assets/shoppingtags.jpg');
-  background-size: cover;
-  background-position: top;
-  font-weight: bold;
-  color: #374785;
-}
