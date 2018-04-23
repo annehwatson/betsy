@@ -1,10 +1,10 @@
 <section class="product-item">
-  <h3><%= item.name %></h3>
-  <%= image_tag(item.url) %>
+  <article>
+    <h3><%= item.name %></h3>
+    <%= image_tag(item.url) %>
+  </article>
+  <article>
   <ul>
-    <li>
-    Description:  <%= item.description %>
-    </li>
     <li>
     Categories: <% item.categories %>
     </li>
@@ -17,15 +17,18 @@
     <li>Add to cart:
       <%= form_with url: add_to_cart_path do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
-      <%= f.number_field :quantity %>
-      <%= submit_tag "add to cart", class: "button", method: :post %>
+      <%= f.number_field :quantity, :style => "width:100px;" %>
+      <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
     </li>
   </ul>
+  </article>
   <article>
-    <section>
+    <section class='product-reviews'>
+      <p>Description: <%= item.description %></p>
       <h4> rating </h4>
       <p> reviews </p>
+
     </section>
   </article>
 </section>
