@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
           if @user.save
             session[:user_id] = @user.id
             flash[:success] = "User #{@user.name} logged in successfully"
-            redirect_to root_path
           else
             flash[:alert] = "User not created"
             redirect_to root_path
@@ -38,6 +37,7 @@ class SessionsController < ApplicationController
       flash[:error] = "Could not log in"
       redirect_to root_path
     end
+    redirect_to user_path(@user)
   end
 
   def logout
@@ -52,4 +52,19 @@ class SessionsController < ApplicationController
     end
   end
 
+  def add_cart_product
+    @product = Product.find_by(id: params[:product][:id])
+
+    if @product
+      session[:product_id] = @product.id
+      session[:quantity] = params[:quantity]
+      redirect_to add_to_cart_path
+
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not add item to cart"
+      flash[:messages] = @product.errors.messages
+    end
+    redirect_to product_path(@product)
+  end
 end

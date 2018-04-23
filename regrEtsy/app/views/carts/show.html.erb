@@ -1,0 +1,11 @@
+<ul class="cart-products">
+<% @products.each do |product| %>
+<li><%= image_url(product) %></li>
+<li><%= product.name %></li>
+<li>qty: <%= @cart.products.where(id: product.id).count%></li>
+<% end %>
+</ul>
+
+
+<%= link_to "edit cart", edit_cart_path(@cart), class: "button" %>
+<%= link_to "checkout", checkout_path(@cart), class: "button" %>

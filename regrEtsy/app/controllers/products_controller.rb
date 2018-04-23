@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :delete]
+  before_action :find_product, only: [:show, :edit, :update, :delete, :add_to_cart]
   before_action :require_login, except: [:root, :index, :show]
 
 
@@ -22,8 +22,6 @@ class ProductsController < ApplicationController
       flash[:success] = "Product added successfully"
       redirect_to products_path
     else
-      # Validations failed! What do we do?
-      # This flash message is redundant but for demonstration purposes
       flash.now[:failure] = "Cound not add product"
       render :new, status: :bad_request
     end
@@ -46,13 +44,17 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+
+
+
   private
   def product_params
-    return params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id)
+     params.require(:product).permit(:name,:description, :price, :stock, :url, :user_id, :quantity)
   end
 
   def find_product
     @product = Product.find_by(id: params[:id])
     head :not_found unless @product
   end
+
 end
