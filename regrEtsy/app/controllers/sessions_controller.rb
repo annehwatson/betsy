@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
           if @user.save
             session[:user_id] = @user.id
             flash[:success] = "User #{@user.name} logged in successfully"
-            redirect_to root_path
           else
             flash[:alert] = "User not created"
             redirect_to root_path
