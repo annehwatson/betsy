@@ -6,7 +6,7 @@
     Description:  <%= item.description %>
     </li>
     <li>
-    Categories: add categories here as links
+    Categories: <% item.categories %>
     </li>
     <li>
       Price: <%= item.price %>
@@ -14,7 +14,16 @@
     <li>
     Quantity:  <%= item.stock %>
     </li>
-    <li>Add to cart: <%= number_field_tag 'quantity', width: 50 %></li>
+    <li>Add to cart:
+      <%= form_with url: add_to_cart_path do |f| %>
+      <%= f.hidden_field :product_id, value: item.id%>
+      <%= f.number_field :quantity %>
+      <%= submit_tag "add to cart", class: "button", method: :post %>
+      <% end %>
+    </li>
+
+
+form_tag(controller: "people", action: "search", method: "get", class: "nifty_form")
   </ul>
   <article>
     <section>

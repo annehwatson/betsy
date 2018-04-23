@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: :login
   post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout', as: :logout
+
+  resources :cart, only: [:show, :edit, :update]
+  post '/cart', to: 'carts#add_to_cart', as: :add_to_cart
+  post '/add', to: 'sessions#add_cart_product', as: :add_product
+
 end
