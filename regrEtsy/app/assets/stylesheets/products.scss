@@ -25,7 +25,7 @@
 //   background-image: url("shoppingcart.jpg")
 // }
 
-.parallax {
+.parallax-1 {
     /* The image used */
     background-image: image-url('ughmug.jpg');
     // background-image: image-url('Failed.jpg');
@@ -39,6 +39,22 @@
     opacity: 0.65;
 }
 
+.parallax-2 {
+  background-image: image-url('shoppingcart.jpg');
+  width: 100vw;
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  opacity: 0.65;
+}
+
+div {
+  display: inline-block;
+}
+
 .caption-1 {
   position: absolute;
   left: 0;
@@ -49,12 +65,26 @@
   font-size: 2em;
 }
 
+
+
 .caption-2 {
   position: absolute;
   left: 0;
-  top: 90%;
+  top: 100%;
   width: 100%;
   text-align: center;
   color: #000;
   font-size: 2em;
+}
+
+.parallax-3 {
+  background-image: image-url('Failed.jpg');
+  width: 100vw;
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  opacity: 0.65;
 }
