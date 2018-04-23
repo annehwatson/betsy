@@ -150,7 +150,7 @@ describe CategoriesController do
 
         delete category_path(category_id)
 
-        must_respond_with :success
+        must_respond_with :redirect
         must_redirect_to categories_path
 
         Category.count.must_equal old_category_count - 1

@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if @user
+    if @login_user
       @category = Category.new(category_params)
       if @category.save
         flash[:success] = "Successfully created #{@category.name}"
