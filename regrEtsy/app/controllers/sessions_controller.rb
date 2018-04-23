@@ -37,6 +37,7 @@ class SessionsController < ApplicationController
       flash[:error] = "Could not log in"
       redirect_to root_path
     end
+    redirect_to root_path
   end
 
   def logout
