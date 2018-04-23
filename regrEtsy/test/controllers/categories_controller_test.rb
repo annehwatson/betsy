@@ -2,9 +2,10 @@ require "test_helper"
 
 describe CategoriesController do
   describe "authenticated user" do
-    # before do
-    #   login(User.first)
-    # end
+    before do
+      @user = User.first
+      #login(User.first)
+    end
 
     describe "index" do
       it "sends a success respond when there are many categories" do
@@ -87,7 +88,7 @@ describe CategoriesController do
         must_respond_with :success
       end
 
-      it "sends not_found if the book does not exist" do
+      it "sends not_found if the category does not exist" do
         category_id = Category.last.id + 1
 
         get edit_category_path(category_id)
@@ -145,14 +146,14 @@ describe CategoriesController do
 
         delete category_path(category_id)
 
-        must_respond_with :redirect
+        must_respond_with :success
         must_redirect_to categories_path
 
         Category.count.must_equal old_category_count - 1
         Category.find_by(id: category_id).must_be_nil
       end
 
-      it "sends not_found when the book does not exist" do
+      it "sends not_found when the category does not exist" do
         category_id = Category.last.id + 1
         old_category_count = Category.count
 
@@ -166,6 +167,7 @@ describe CategoriesController do
   end
 
   describe "guest user" do
+
     it "rejects requests for new category form" do
       get new_category_path
       must_respond_with :unauthorized

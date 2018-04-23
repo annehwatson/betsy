@@ -10,13 +10,19 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
-      flash[:success] = "Successfully created #{@category.name}"
-      redirect_to categories_path
+    @user = User.first
+    if @user #@login_user
+      @category = Category.new(category_params)
+      if @category.save
+        flash[:success] = "Successfully created #{@category.name}"
+        redirect_to categories_path
+      else
+        flash.now[:error] = "Validations failed"
+        render :new, status: :bad_request
+      end
     else
-      flash[:error] = "Could not create #{@category.name}"
-      flash[:messages] = @category.errors.error_messagesrender :new, status: :bad_request
+      flash.now[:error] = "You must be logged in to create a category"
+      render :new, status: :unauthorized
     end
   end
 
@@ -28,18 +34,20 @@ class CategoriesController < ApplicationController
     @category.assign_attributes(category_params)
     if @category.save
       redirect_to category_path(@category)
+    else
+      render :edit, status: :bad_request
     end
   end
 
   def destroy
-    if session[:user_id] #maybe @login_user || @admin_user in future?
+    @user = User.first
+    if @user #@login_user || @admin_user in future?
       @category.destroy
       flash[:success] = "Successfully destroyed #{@category.name}"
       redirect_to categories_path
     else
       flash[:error] = "You do not have permission to delete a category"
-      #render_401
-      redirect_to categories_path
+      redirect_to categories_path, status: :unauthorized
     end
   end
 
