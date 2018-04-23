@@ -6,7 +6,12 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    if @login_user
+      @category = Category.new
+    else
+      flash[:error] = "You must be logged in to create a category"
+      redirect_to categories_path
+    end
   end
 
   def create
