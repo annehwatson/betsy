@@ -12,34 +12,48 @@
 //     background-repeat: no-repeat;
 //     background-size: cover;
 // }
+//
+// .img-1 {
+//   background-image: url("ughmug.jpg")
+// }
+//
+// .img-2 {
+//   background-image: url("Failed.jpg")
+// }
+//
+// .img-3 {
+//   background-image: url("shoppingcart.jpg")
+// }
+//
+// .img-1, .img-2, .img-3 {
+//   position: relative;
+//   opacity: 0.65;
+//   background-attachment: fixed;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+//
+// .caption {
+//   position: absolute;
+//   left: 0;
+//   top: 50%;
+//   width: 100%;
+//   text-align: center;
+//   color: #000;
+//   font-size: 2em;
+// }
 
-.img-1 {
-  background-image: url("ughmug.jpg")
-}
+.parallax {
+    /* The image used */
+    background-image: url('assets/images/ughmug.jpg');
 
-.img-2 {
-  background-image: url("Failed.jpg")
-}
+    /* Full height */
+    height: 100%;
 
-.img-3 {
-  background-image: url("shoppingcart.jpg")
-}
-
-.img-1, .img-2, .img-3 {
-  position: relative;
-  opacity: 0.65;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.caption {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #000;
-  font-size: 2em;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
