@@ -38,8 +38,8 @@ class CategoriesController < ApplicationController
         render :edit, status: :bad_request
       end
     else
-      flash.now[:error] = "You must be logged in to create a category"
-      render :new, status: :unauthorized
+      flash.now[:error] = "You must be logged in to update a category"
+      render :edit, status: :unauthorized
     end
   end
 
