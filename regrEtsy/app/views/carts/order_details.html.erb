@@ -1,8 +1,8 @@
 <h1> Order Details </h1>
 <ul>
-  <li>Order#</li>
-  <li>Name </li>
-  <li>Email</li>
+  <li>Order#: <%@order.id%></li>
+  <li>Name: <% Buyerdetail.find_by(@order.buyerdetails_id).buyer_name %> </li>
+  <li>Email: <% Buyerdetail.find_by(@order.buyerdetails_id).email %></li>
   <li> Product</li>
   <li> Total</li>
 </ul>
