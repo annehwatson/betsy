@@ -20,9 +20,8 @@ class CartsController < ApplicationController
     flash[:status] = :failure
     quantity = params[:quantity].to_i
     if @product.sufficient_stock(quantity)
-      quantity.times do
-        @cart.products << @product
-      end
+      @cart.products << @product
+      @cart.products.last.quantity = quantity
 
       if @cart.save
         flash[:status] = :success

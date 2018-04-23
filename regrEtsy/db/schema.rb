@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423131605) do
+ActiveRecord::Schema.define(version: 20180423193052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180423131605) do
   create_table "carts_products", id: false, force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "product_id", null: false
+    t.integer "quantity"
     t.index ["cart_id", "product_id"], name: "index_carts_products_on_cart_id_and_product_id"
   end
 
@@ -52,12 +53,20 @@ ActiveRecord::Schema.define(version: 20180423131605) do
     t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
-  create_table "order_item", force: :cascade do |t|
+  create_table "items_orders", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "order_id"
     t.integer "quantity"
-    t.index ["order_id"], name: "index_order_item_on_order_id"
-    t.index ["product_id"], name: "index_order_item_on_product_id"
+    t.index ["order_id"], name: "index_items_orders_on_order_id"
+    t.index ["product_id"], name: "index_items_orders_on_product_id"
+  end
+
+  create_table "orderitems", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
