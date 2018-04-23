@@ -1,3 +1,4 @@
+
 # Category.create!([
 #   {name: "Time Machines"},
 #   {name: "Pharmaceuticals"},
@@ -13,4 +14,11 @@
 #   {name: "Plan B", description: "", price: 27.49, stock: 5, url: "", user_id: nil, retired: false},
 #   {name: "White Out", description: "", price: 3.99, stock: 6, url: "", user_id: 1, retired: false},
 #   {name: "Tardis", description: "Dr. Who time machine", price: 2300000000.0, stock: 1, url: "https://cdn.pixabay.com/photo/2017/05/14/09/51/tardis-2311634_960_720.png", user_id: nil, retired: false}
+# ])
+
+# Category.create!([
+#   {name: "Time Machines"},
+#   {name: "Pharmaceuticals"},
+#   {name: "Personal Care"},
+#   {name: "Lifestyle"}
 # ])

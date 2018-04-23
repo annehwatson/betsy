@@ -10,8 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @user = User.first
-    if @user #@login_user
+    if @login_user
       @category = Category.new(category_params)
       if @category.save
         flash[:success] = "Successfully created #{@category.name}"
@@ -31,17 +30,21 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def update
-    @category.assign_attributes(category_params)
-    if @category.save
-      redirect_to category_path(@category)
+    if @login_user
+      @category.assign_attributes(category_params)
+      if @category.save
+        redirect_to category_path(@category)
+      else
+        render :edit, status: :bad_request
+      end
     else
-      render :edit, status: :bad_request
+      flash.now[:error] = "You must be logged in to update a category"
+      render :edit, status: :unauthorized
     end
   end
 
   def destroy
-    @user = User.first
-    if @user #@login_user || @admin_user in future?
+    if @login_user
       @category.destroy
       flash[:success] = "Successfully destroyed #{@category.name}"
       redirect_to categories_path
