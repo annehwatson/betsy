@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_cart
+  before_action :set_order
   before_action :find_product
   before_action :find_user
 
@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
     return email[0]
   end
 
-  def set_cart
-    @cart = Order.find(session[:cart_id])
+  def set_order
+    @order = Order.find(session[:order_id])
   rescue ActiveRecord::RecordNotFound
-    @cart = Order.create(status: :pending)
-    session[:cart_id] = @cart.id
+    @order = Order.create(status: :pending)
+    session[:order_id] = @order.id
   end
 
   def find_product

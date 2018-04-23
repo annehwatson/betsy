@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
-
     if auth_hash['uid']
       @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
 
@@ -18,23 +17,21 @@ class SessionsController < ApplicationController
           provider: ['github'])
 
           if @user.save
-            session[:user_id] = @user.id
-            flash[:success] = "User #{@user.name} logged in successfully"
+            flash[:success] = "User #{@user.name} added"
           else
             flash[:alert] = "User not created"
           end
           # User doesn't match anything in the DB
           # Attempt to create a new user
+        end
+          session[:user_id] = @user.id
+          flash[:success] = "Logged in successfully"
+          redirect_to user_path(@user)
+
       else
-        session[:user_id] = @user.id
-        flash[:success] = "Logged in successfully"
+        flash[:error] = "Could not log in"
         redirect_to root_path
       end
-    else
-      flash[:error] = "Could not log in"
-      redirect_to root_path
-    end
-    redirect_to root_path
   end
 
   def logout
@@ -48,5 +45,4 @@ class SessionsController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

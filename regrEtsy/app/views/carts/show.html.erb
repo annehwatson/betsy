@@ -1,6 +1,6 @@
 <ul class="cart-products">
 <% @products.each do |product| %>
-<li><%= image_url(product) %></li>
+<li><%= image_tag (product.url) %></li>
 <li><%= product.name %></li>
 
 <li>qty: <%= Orderitem.find_by(product_id: product.id).quantity%></li>
