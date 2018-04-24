@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product.new(user_id: params[:user_id])
   end
 
   def create
