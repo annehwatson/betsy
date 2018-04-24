@@ -9,15 +9,15 @@
     Categories: <% item.categories %>
     </li>
     <li>
-      Price: <%= item.price %>
+      Price: <%= number_to_currency item.price %>
     </li>
     <li>
     Quantity:  <%= item.stock %>
     </li>
     <li>Add to cart:
-      <%= form_with url: add_to_cart_path do |f| %>
+      <%= form_with url: add_to_cart_path(@order_item) do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
-      <%= f.number_field :quantity, :style => "width:100px;" %>
+      <%= f.number_field :quantity, class: "number-field" %>
       <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
     </li>
