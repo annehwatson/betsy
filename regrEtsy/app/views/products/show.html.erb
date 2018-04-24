@@ -1,0 +1,10 @@
+<h3>Product#Show Page for <%= @product.name%></h3>
+
+
+<%= link_to "Write a Review", new_product_review_path(@product) %>
+</br>
+<% @product.reviews.each do |r| %>
+  <%= r.rating %></br>
+  <%= r.review %></br>
+  <%= r.created_at %></br>
+<% end %>
