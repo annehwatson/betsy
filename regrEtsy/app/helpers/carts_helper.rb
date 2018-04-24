@@ -6,7 +6,7 @@ module CartsHelper
   end
 
   def quantity_edit?(fullpath)
-  return true if fullpath == '/carts/~'
+  return true if fullpath == "/carts/#{@order.id}"
   end
 
 end

@@ -3,6 +3,5 @@
   <%= render partial: "layouts/order_products", collection: @orderitems, as: :item %>
 </table>
 
-<%= link_to "edit cart", edit_cart_path(@order), class: "button" %>
 <%= link_to "checkout", checkout_path(@order), class: "button" %>
 </section>

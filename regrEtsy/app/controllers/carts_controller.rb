@@ -8,13 +8,37 @@ class CartsController < ApplicationController
   def edit; end
 
   def update
-    @order.assign_attributes(payment_params)
+
+    @order.assign_attributes(payment_params) if params[:buyerdetail]
+
+    orderitem = @order.orderitems.find_by(product_id: params[:product_id].to_i)
+
+    orderitem.assign_attributes(quantity: params[:quantity])
+
+
 
     if @order.save
       redirect_to cart_path(@order)
     else
+      result[:status] = :error
+      result[:messages] = @order.errors.messages
       render :edit, status: :bad_request
     end
+  end
+
+  def update
+    orderitem = @order.orderitems.find_by(product_id: params[:product_id])
+    orderitem.quantity = params[:quantity]
+    
+    if orderitem.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully changed #{@product.name} quantity to #{quantity}."
+    else
+      flash.now[:status] = :failure
+      flash.now[:messages] = orderitem.errors.messages
+      render :show
+    end
+    redirect_to cart_path(@order)
   end
 
   def add_to_cart
