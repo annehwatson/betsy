@@ -2070,3 +2070,54 @@ Processing by ProductsController#index as HTML
 Completed 200 OK in 114ms (Views: 108.8ms | ActiveRecord: 1.0ms)
 
 
+Started GET "/carts/17" for 127.0.0.1 at 2018-04-24 16:34:19 -0700
+  [1m[35m (12.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CartsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering carts/show.html.erb within layouts/application
+  [1m[36mProduct Load (11.6ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "orderitems" ON "products"."id" = "orderitems"."product_id" WHERE "orderitems"."order_id" = $1[0m  [["order_id", 17]]
+  [1m[36mOrderitem Load (0.2ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.3ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.3ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.3ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  Rendered carts/show.html.erb within layouts/application (206.6ms)
+Completed 500 Internal Server Error in 320ms (ActiveRecord: 26.2ms)
+
+
+  [1m[36mOrderitem Load (0.3ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.2ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.3ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mOrderitem Load (0.2ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+
+NoMethodError - undefined method `edit_cart_path' for #<#<Class:0x00007fa7ad3242e8>:0x00007fa7afee2ce0>
+Did you mean?  edit_user_path:
+  app/views/carts/show.html.erb:11:in `_app_views_carts_show_html_erb___3083500908199628679_70179071010840'
+
+Started POST "/__better_errors/0e2f8ceff67d194d/variables" for 127.0.0.1 at 2018-04-24 16:34:21 -0700
+  [1m[36mOrderitem Load (0.6ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
+  [1m[36mCACHE Orderitem Load (0.0ms)[0m  [1m[34mSELECT  "orderitems".* FROM "orderitems" WHERE "orderitems"."order_id" = $1 LIMIT $2[0m  [["order_id", 17], ["LIMIT", 11]]
