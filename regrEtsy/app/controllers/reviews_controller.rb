@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   def new
     #needs validation on session[:user_id] to check that they aren't reviewing their own product they sell; is user_id on product the seller?
-    @review = Review.new
+    @review = Review.new(product_id: params[:id])
   end
 
   def create
@@ -34,4 +34,3 @@ class ReviewsController < ApplicationController
   def review_params
     return params.require(:review).permit(:rating, :review, :product_id)
   end
-end
