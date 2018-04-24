@@ -1971,3 +1971,102 @@ Processing by ProductsController#show as HTML
 Completed 200 OK in 120ms (Views: 116.2ms | ActiveRecord: 0.8ms)
 
 
+Started GET "/products/1" for 127.0.0.1 at 2018-04-24 15:07:49 -0700
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (5.3ms)
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  Rendered products/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 133ms (Views: 125.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 15:07:55 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered reviews/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 115ms (Views: 104.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2018-04-24 15:08:05 -0700
+Processing by ReviewsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"asilf/hHDsWxRP3y9IflpmXgU+GMcek8VS15aWsqC1h/LjPqXdmLYAASIPlJPVAUMTcYoOXCxvJTu8sjFPQwCg==", "review"=>{"rating"=>"3", "product_id"=>"1", "review"=>"Blah reviewing more after adding partial"}, "commit"=>"Create Review"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (2.4ms)[0m  [1m[32mINSERT INTO "reviews" ("rating", "review", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["rating", 3], ["review", "Blah reviewing more after adding partial"], ["created_at", "2018-04-24 22:08:05.120062"], ["updated_at", "2018-04-24 22:08:05.120062"], ["product_id", 1]]
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products/1
+Completed 302 Found in 17ms (ActiveRecord: 10.2ms)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2018-04-24 15:08:05 -0700
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/_product.html.erb (3.3ms)
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  Rendered products/show.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 107ms (Views: 102.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2018-04-24 15:08:15 -0700
+Processing by CategoriesController#index as HTML
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 107ms (Views: 97.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/categories/3/products" for 127.0.0.1 at 2018-04-24 15:08:17 -0700
+Processing by ProductsController#index as HTML
+  Parameters: {"category_id"=>"3"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "categories_products" ON "products"."id" = "categories_products"."product_id" WHERE "categories_products"."category_id" = $1[0m  [["category_id", 3]]
+  Rendered collection of products/_product.html.erb [3 times] (15.0ms)
+  Rendered products/index.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 128ms (Views: 120.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/categories/3/products" for 127.0.0.1 at 2018-04-24 15:08:48 -0700
+Processing by ProductsController#index as HTML
+  Parameters: {"category_id"=>"3"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "categories_products" ON "products"."id" = "categories_products"."product_id" WHERE "categories_products"."category_id" = $1[0m  [["category_id", 3]]
+  Rendered collection of products/_product.html.erb [3 times] (8.3ms)
+  Rendered products/index.html.erb within layouts/application (12.7ms)
+Completed 200 OK in 117ms (Views: 110.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/categories/3/products" for 127.0.0.1 at 2018-04-24 15:09:09 -0700
+Processing by ProductsController#index as HTML
+  Parameters: {"category_id"=>"3"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "categories_products" ON "products"."id" = "categories_products"."product_id" WHERE "categories_products"."category_id" = $1[0m  [["category_id", 3]]
+  Rendered collection of products/_product.html.erb [3 times] (8.2ms)
+  Rendered products/index.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 114ms (Views: 108.8ms | ActiveRecord: 1.0ms)
+
+
