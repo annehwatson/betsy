@@ -1,6 +1,6 @@
 <section class="product-item">
   <article>
-    <h3><%= item.name %></h3>
+    <h3><%= link_to(item.name, product_path(item)) %></h3>
     <%= image_tag (item.url) %>
   </article>
   <article>

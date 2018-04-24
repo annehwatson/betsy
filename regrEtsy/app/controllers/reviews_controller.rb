@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
       flash[:success] = "Successfully created review"
       redirect_to product_path(@review.product)
     else
-      flash[:error] = "Could not create new review"
+      flash.now[:error] = "Could not create new review"
       render :new, status: :bad_request
     end
   end
