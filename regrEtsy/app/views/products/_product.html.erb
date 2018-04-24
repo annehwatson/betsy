@@ -15,9 +15,9 @@
     Quantity:  <%= item.stock %>
     </li>
     <li>Add to cart:
-      <%= form_with url: add_to_cart_path do |f| %>
+      <%= form_with url: add_to_cart_path(@order_item) do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
-      <%= f.number_field :quantity, :style => "width:100px;" %>
+      <%= f.number_field :quantity, class: "number-field" %>
       <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
     </li>
@@ -32,13 +32,3 @@
     </section>
   </article>
 </section>
-
-
-<% @products.each do |product| %>
- <p><%= product.name %> | <%= number_to_currency product.price %>
- <%= form_for @order_item do |f| %>
-   <%= f.hidden_field :product_id, value: product.id %>
-   <%= f.number_field :quantity %>
-   <%= f.submit "Add to cart" %>
- <% end %></p>
-<% end %>
