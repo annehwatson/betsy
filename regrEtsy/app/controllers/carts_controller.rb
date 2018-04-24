@@ -2,12 +2,13 @@ class CartsController < ApplicationController
   def show
     @order
     @products = @order.products
+    @orderitems = @order.orderitems
   end
 
   def edit; end
 
   def update
-    @order.assign_attributes(product_params)
+    @order.assign_attributes(payment_params)
 
     if @order.save
       redirect_to cart_path(@order)
@@ -21,19 +22,20 @@ class CartsController < ApplicationController
     quantity = params[:quantity].to_i
     if @product.sufficient_stock(quantity)
       orderitem = Orderitem.new(product: @product, order_id: @order.id, quantity: quantity)
+      orderitem = @order.find_existing(orderitem)
+
+      puts "OrderItem ID after find_existing: #{orderitem.id}"
 
       if orderitem.save
         flash[:status] = :success
         flash[:result_text] = "Successfully added #{quantity} #{@product.name} to cart"
-        #this logic may belong in order, should we
-        #decrement when added to cart, or when an order
-        #is marked complete?
+      else
+        flash[:messages] = orderitem.errors.messages
       end
     else
       flash[:result_text] = "Could not add item to cart"
-      flash[:messages] = orderitem.errors.messages
+      flash[:messages] = @product.errors.messages
     end
-
     redirect_back fallback_location: product_path(@product)
   end
 
@@ -69,6 +71,7 @@ class CartsController < ApplicationController
 
   def order_details
     @order
+    @products = @order.products
     @orderitems = Orderitem.where(order_id: @order.id)
     @customer = Buyerdetail.find_by(@order.buyerdetails_id)
   end

@@ -14,7 +14,7 @@
     <li>
     Quantity:  <%= item.stock %>
     </li>
-    <li>Add to cart:
+    <li>
       <%= form_with url: add_to_cart_path do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
       <%= f.number_field :quantity, :style => "width:100px;" %>
@@ -32,13 +32,3 @@
     </section>
   </article>
 </section>
-
-
-<% @products.each do |product| %>
- <p><%= product.name %> | <%= number_to_currency product.price %>
- <%= form_for @order_item do |f| %>
-   <%= f.hidden_field :product_id, value: product.id %>
-   <%= f.number_field :quantity %>
-   <%= f.submit "Add to cart" %>
- <% end %></p>
-<% end %>
