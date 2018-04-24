@@ -9,7 +9,7 @@
     Categories: <% item.categories %>
     </li>
     <li>
-      Price: <%= item.price %>
+      Price: <%= number_to_currency item.price %>
     </li>
     <li>
     Quantity:  <%= item.stock %>
@@ -32,3 +32,13 @@
     </section>
   </article>
 </section>
+
+
+<% @products.each do |product| %>
+ <p><%= product.name %> | <%= number_to_currency product.price %>
+ <%= form_for @order_item do |f| %>
+   <%= f.hidden_field :product_id, value: product.id %>
+   <%= f.number_field :quantity %>
+   <%= f.submit "Add to cart" %>
+ <% end %></p>
+<% end %>

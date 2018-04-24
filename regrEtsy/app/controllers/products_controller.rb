@@ -11,8 +11,10 @@ class ProductsController < ApplicationController
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products
+      @order_item = Orderitem.new
     else
       @products = Product.all
+      @order_item = Orderitem.new
     end
   end
 

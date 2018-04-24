@@ -1,6 +1,6 @@
 <%= form_for @paymentinfo, url: checkout_path do |f| %>
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.email_field :email %>
 
   <%= f.label :mailing_address %>
   <%= f.text_field :mailing_address %>
@@ -9,7 +9,7 @@
   <%= f.text_field :buyer_name %>
 
   <%= f.label :card_number %>
-  <%= f.text_field :card_number %>
+  <%= f.number_field :card_number %>
 
   <%= f.label :expiration %>
   <%= f.text_field :expiration %>
