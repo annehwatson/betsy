@@ -1,0 +1,14 @@
+<h3>Product#Show Page for <%= @product.name%></h3>
+
+
+<%= link_to "Write a Review", new_product_review_path(@product) %>
+
+<!-- render :template => 'reviews/new'  -->
+<!-- would be cool to get inline review creation but I couldn't figure out how to get the review new.html.erb to work to create Review.new as a local in this render -->
+
+</br>
+<% @product.reviews.each do |r| %>
+  <%= r.rating %></br>
+  <%= r.review %></br>
+  <%= r.created_at %></br>
+<% end %>
