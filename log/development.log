@@ -1,0 +1,44 @@
+Started GET "/" for 127.0.0.1 at 2018-04-24 11:27:29 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProductsController#root as HTML
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/root.html.erb within layouts/application
+  Rendered products/root.html.erb within layouts/application (1.6ms)
+Started GET "/" for 127.0.0.1 at 2018-04-24 11:27:33 -0700
+Processing by ProductsController#root as HTML
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/root.html.erb within layouts/application
+  Rendered products/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 13504ms (Views: 13451.1ms | ActiveRecord: 5.3ms)
+
+
+Completed 200 OK in 9567ms (Views: 7633.4ms | ActiveRecord: 1316.7ms)
+
+
+Started GET "/categories" for 127.0.0.1 at 2018-04-24 11:27:46 -0700
+Processing by CategoriesController#index as HTML
+  [1m[36mOrder Load (4.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 372ms (Views: 301.7ms | ActiveRecord: 9.4ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2018-04-24 11:27:47 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mOrder Load (3.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered collection of products/_product.html.erb [10 times] (160.7ms)
+  Rendered products/index.html.erb within layouts/application (181.7ms)
+Completed 200 OK in 323ms (Views: 282.9ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-24 11:27:48 -0700
+Processing by ProductsController#root as HTML
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/root.html.erb within layouts/application
+  Rendered products/root.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 139ms (Views: 129.8ms | ActiveRecord: 0.6ms)
+
+
