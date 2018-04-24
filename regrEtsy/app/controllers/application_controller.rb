@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def set_order
     @order = Order.find_by(id: session[:order_id])
-    unless @order || @order.status == "pending"
+    if @order.status == "paid" || !@order
       @order = Order.create(status: :pending)
       session[:order_id] = @order.id
     end
