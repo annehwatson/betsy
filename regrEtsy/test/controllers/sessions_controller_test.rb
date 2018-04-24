@@ -1,6 +1,14 @@
 require "test_helper"
 
 describe SessionsController do
+
+  describe 'new' do
+    it 'succeeds with a new user' do
+      get new_user_path
+      must_respond_with :success
+    end
+  end
+
   describe "auth_callback" do
     it "should log in an existing user and redirects them back to the homepage" do
       start_count = User.count
@@ -24,6 +32,7 @@ describe SessionsController do
         uid: 901 )
 
       login(user)
+
       #Assert
       must_respond_with :redirect
       must_redirect_to root_path
@@ -65,8 +74,8 @@ describe SessionsController do
 
       user = User.new(
         provider: "github",
-        email: 'something@adadevelopersacademy.org',
-        name: 'something')
+        name: 'something',
+        uid: 99999)
 
       login(user)
 
@@ -83,13 +92,6 @@ describe SessionsController do
       delete logout_path
       must_respond_with :redirect
       must_redirect_to root_path
-    end
-  end
-
-  describe 'new' do
-    it 'succeeds with a new user' do
-      get new_user_path
-      must_respond_with :success
     end
   end
 end
