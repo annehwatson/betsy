@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+before_action :reload_order, only: [:update]
+
   def show
     @order
     @products = @order.products
@@ -8,31 +10,18 @@ class CartsController < ApplicationController
   def edit; end
 
   def update
-
-    @order.assign_attributes(payment_params) if params[:buyerdetail]
-
-    orderitem = @order.orderitems.find_by(product_id: params[:product_id].to_i)
-
-    orderitem.assign_attributes(quantity: params[:quantity])
-
-
-
-    if @order.save
-      redirect_to cart_path(@order)
-    else
-      result[:status] = :error
-      result[:messages] = @order.errors.messages
-      render :edit, status: :bad_request
-    end
-  end
-
-  def update
     orderitem = @order.orderitems.find_by(product_id: params[:product_id])
+
     orderitem.quantity = params[:quantity]
-    
+
     if orderitem.save
       flash[:status] = :success
-      flash[:result_text] = "Successfully changed #{@product.name} quantity to #{quantity}."
+      if orderitem.quantity == 0
+        orderitem.destroy
+        flash[:result_text] = "Removed #{@product.name}"
+      else
+        flash[:result_text] = "Successfully changed #{@product.name} quantity to #{params[:quantity]}."
+      end
     else
       flash.now[:status] = :failure
       flash.now[:messages] = orderitem.errors.messages
@@ -103,5 +92,13 @@ class CartsController < ApplicationController
   private
   def payment_params
     params.require(:buyerdetail).permit(:email, :mailing_address, :buyer_name, :card_number, :expiration, :cvv, :zipcode)
+  end
+
+  def reload_order
+    @order.reload
+  end
+
+  def clear_cart
+    @order = Order.find_by(session[:order_id])
   end
 end
