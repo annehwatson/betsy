@@ -6,7 +6,20 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
-  def
+  def create
+    @review = Review.new(review_params)
+    if @review.save
+      flash[:success] = "Successfully created review"
+      redirect_to product_path(@review.product)
+    else
+      flash[:error] = "Could not create new review"
+      render :new, status: :bad_request
+    end
+  end
+
+
+
+  end
 
 
   private
