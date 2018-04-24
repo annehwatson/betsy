@@ -20,7 +20,7 @@ class CartsController < ApplicationController
     flash[:status] = :failure
     quantity = params[:quantity].to_i
     if @product.sufficient_stock(quantity)
-      orderitem = Orderitem.new(product: @product, order_id: @cart.id, quantity: quantity)
+      orderitem = Orderitem.new(product: @product, order_id: @order.id, quantity: quantity)
 
       if orderitem.save
         flash[:status] = :success
@@ -28,7 +28,6 @@ class CartsController < ApplicationController
         #this logic may belong in order, should we
         #decrement when added to cart, or when an order
         #is marked complete?
-        @product.decrement_stock(quantity)
       end
     else
       flash[:result_text] = "Could not add item to cart"
@@ -44,27 +43,34 @@ class CartsController < ApplicationController
 
   def finalize
     @paymentinfo = Buyerdetail.new(payment_params)
-    if session[:order_id]
-      @order = Order.find_by(session[:order_id])
-    else
-      @order = Order.create
-    end
     @paymentinfo.order_id = @order.id
 
     if @paymentinfo.save
-      flash[:status] = :success
-      flash[:result_text] = "Successfully completed Order # #{@order.id}"
-      redirect_to order_path(@order)
-    else
-      flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not complete order."
-      flash.now[:messages] = @paymentinfo.errors.messages
-      render :checkout, status: :bad_request
+      @order.status = :paid
+
+      @order.products.each do |product|
+        quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
+        product.decrement_stock(quantity)
+      end
+
+      if @order.save
+        flash[:status] = :success
+        flash[:result_text] = "Successfully completed Order # #{@order.id}"
+
+        redirect_to order_path(@order)
+      else
+        flash.now[:status] = :failure
+        flash.now[:result_text] = "Could not complete order."
+        flash.now[:messages] = @paymentinfo.errors.messages && @order.errors.messages
+        render :checkout, status: :bad_request
+      end
     end
   end
 
   def order_details
-    @order = Order.find_by(session[:order_id])
+    @order
+    @orderitems = Orderitem.where(order_id: @order.id)
+    @customer = Buyerdetail.find_by(@order.buyerdetails_id)
   end
 
   private
