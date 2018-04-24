@@ -1609,3 +1609,177 @@ Processing by ReviewsController#new as HTML
 Completed 200 OK in 109ms (Views: 101.3ms | ActiveRecord: 0.7ms)
 
 
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:22:58 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/new.html.erb within layouts/application (1.4ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.9ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_when
+     when '*' 
+         ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:10: syntax error, unexpected ':', expecting keyword_end
+       rating: 1 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:12: syntax error, unexpected ':', expecting keyword_end
+       rating: 2 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:14: syntax error, unexpected ':', expecting keyword_end
+       rating: 3 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:16: syntax error, unexpected ':', expecting keyword_end
+       rating: 4 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:18: syntax error, unexpected ':', expecting keyword_end
+       rating: 5 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:28: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^:
+  app/views/reviews/new.html.erb:9:in `'
+
+Started POST "/__better_errors/1855f163e66bda70/variables" for 127.0.0.1 at 2018-04-24 14:22:58 -0700
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:23:24 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_when
+     when '*' 
+         ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:10: syntax error, unexpected ':', expecting keyword_end
+       rating: 1 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:12: syntax error, unexpected ':', expecting keyword_end
+       rating: 2 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:14: syntax error, unexpected ':', expecting keyword_end
+       rating: 3 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:16: syntax error, unexpected ':', expecting keyword_end
+       rating: 4 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:18: syntax error, unexpected ':', expecting keyword_end
+       rating: 5 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:28: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^:
+  app/views/reviews/new.html.erb:9:in `'
+
+Started POST "/__better_errors/fee748bd35bdb29e/variables" for 127.0.0.1 at 2018-04-24 14:23:24 -0700
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:23:25 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/new.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_when
+     when '*' 
+         ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:10: syntax error, unexpected ':', expecting keyword_end
+       rating: 1 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:12: syntax error, unexpected ':', expecting keyword_end
+       rating: 2 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:14: syntax error, unexpected ':', expecting keyword_end
+       rating: 3 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:16: syntax error, unexpected ':', expecting keyword_end
+       rating: 4 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:18: syntax error, unexpected ':', expecting keyword_end
+       rating: 5 
+              ^
+/Users/annehwatson/Desktop/ada_dev/week_11/betsy/app/views/reviews/new.html.erb:28: syntax error, unexpected keyword_end, expecting end-of-input
+'.freeze; end 
+             ^:
+  app/views/reviews/new.html.erb:9:in `'
+
+Started POST "/__better_errors/8ac7371ba04c4c06/variables" for 127.0.0.1 at 2018-04-24 14:23:25 -0700
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:23:45 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered reviews/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 140ms (Views: 135.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:25:34 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered reviews/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 96ms (Views: 91.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:25:57 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered reviews/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 105ms (Views: 100.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/1/reviews/new" for 127.0.0.1 at 2018-04-24 14:30:29 -0700
+Processing by ReviewsController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering reviews/new.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered reviews/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 117ms (Views: 113.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2018-04-24 14:30:34 -0700
+Processing by ReviewsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9u0MRdPCQgexjceI4SIpmI39b4x80LF35OrHz+ZOrc5DPcDFC+vGIAC9Ash1wDGE0HwsYxi2yHP4y4jUZwD5Jg==", "review"=>{"rating"=>"4", "product_id"=>"1", "review"=>""}, "commit"=>"Create Review"}
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO "reviews" ("rating", "review", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["rating", 4], ["review", ""], ["created_at", "2018-04-24 21:30:34.082307"], ["updated_at", "2018-04-24 21:30:34.082307"], ["product_id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products/1
+Completed 302 Found in 11ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2018-04-24 14:30:34 -0700
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  Rendered products/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 96ms (Views: 91.3ms | ActiveRecord: 0.8ms)
+
+
