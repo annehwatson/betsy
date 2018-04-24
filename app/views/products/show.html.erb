@@ -1,7 +1,4 @@
-<h3><%= @product.name%></h3>
-<%= @product.price %>
-<%= @product.description %>
-<%= @product.stock %> available
+<%= render partial: "product", locals: { item: @product } %>
 
 <%= link_to "Write a Review", new_product_review_path(@product) %>
 
