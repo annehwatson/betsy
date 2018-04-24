@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_name(auth_hash)
+    return if auth_hash.nil?
     email = auth_hash.split('@')
     return email[0]
   end

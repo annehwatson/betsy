@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -9,10 +10,6 @@ class UsersController < ApplicationController
     # if @products.user_id == @user.id
     #   @products = Products.find_by(user_id: params[:user_id])
     # end
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
 private
