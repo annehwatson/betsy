@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'products#root'
 
-  resources :products
   resources :users
+  resources :products do
+    resources :users, only: [:index]
+  end
 
   resources :categories do
     resources :products, only: [:index]

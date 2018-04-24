@@ -4,16 +4,30 @@
 
   <%= render partial: "layouts/error_messages", locals: { model: @user } %>
 
+<article>
   <p>Joined site <%= render_date @user.created_at %></p>
 
   <p>Name: <span><%= @user.name %></span></p>
   <p>Username: <span><%= @user.username %></span></p>
   <p>Email: <span><%= @user.email %></span></p>
 
-  <%= link_to "Back to Product List", root_path, class: "button" %>
+  <%= link_to "Back to Product List", root_path, class: "hollow button" %>
 
-  <section class='product_list'>
-
-  </section>
-
+  <%= link_to "Add New Product", new_product_path, class: 'hollow button'  %>
+</article>
 </section>
+
+  <article class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Stock</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </article>
