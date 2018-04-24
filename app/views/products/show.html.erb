@@ -12,7 +12,9 @@
 
 </br>
 <% @product.reviews.each do |r| %>
-  <%= r.rating %></br>
+  <% r.rating.times do %>
+    <%= "*" %>
+  <% end %></br>
   <%= r.review %></br>
   <%= r.created_at %></br>
 <% end %>
