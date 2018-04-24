@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404
-    # DPR: this will actually render a 404 page in production
     raise ActionController::RoutingError.new('Not Found')
   end
 
@@ -28,10 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_order
-    @order = Order.find(session[:order_id])
-  rescue ActiveRecord::RecordNotFound
-    @order = Order.create(status: :pending)
-    session[:order_id] = @order.id
+    @order = Order.find_by(id: session[:order_id])
+    if @order.status == "paid" || !@order
+      @order = Order.create(status: :pending)
+      session[:order_id] = @order.id
+    end
   end
 
   def find_product
