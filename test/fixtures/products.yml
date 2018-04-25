@@ -4,11 +4,17 @@ odor:
   name: Odor Eaters
   price: 12.95
   user: anne
+  stock: 20
+  url: google.com
+  retired: false
 
 regret:
   name: Pure Unadulterated Regret
   price: 1000000000.99
   user: anne
+  stock: 200000
+  url: google.com
+  retired: false
 
 product_one:
   name: White Out
