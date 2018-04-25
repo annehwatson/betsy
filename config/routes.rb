@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
   delete '/logout', to: 'sessions#logout', as: 'logout'
 
-  resources :carts, only: [:show, :edit, :update]
-  post '/carts', to: 'carts#add_to_cart', as: :add_to_cart
-  post '/add', to: 'sessions#add_cart_product', as: :add_product
+  resources :carts, only: [:show, :update]
+  post '/carts/', to: 'carts#add_to_cart', as: :add_to_cart
+
 
   get 'carts/:id/checkout', to: 'carts#checkout', as: :checkout
   post 'carts/:id/checkout', to: 'carts#finalize'

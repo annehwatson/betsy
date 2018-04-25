@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_order
+
+  before_action :set_order, except: [:new, :edit]
   before_action :find_product
   before_action :find_user
 
-  private
+
   def require_login
     @user = User.find_by(id: session[:user_id])
     head :unauthorized unless @user
@@ -17,7 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404
-    # DPR: this will actually render a 404 page in production
     raise ActionController::RoutingError.new('Not Found')
   end
 
@@ -28,10 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_order
-    @order = Order.find(session[:order_id])
-  rescue ActiveRecord::RecordNotFound
-    @order = Order.create(status: :pending)
-    session[:order_id] = @order.id
+    @order = Order.find_by(id: session[:order_id])
+    if !@order || @order.status == "paid"
+      @order = Order.create(status: :pending)
+      session[:order_id] = @order.id
+    end
   end
 
   def find_product

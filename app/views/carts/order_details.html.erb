@@ -1,10 +1,15 @@
 <h1> Order Details </h1>
-<ul>
-
-  <li>Order#: <%= @order.id%></li>
-  <li>Name: <%= @customer.buyer_name %> </li>
-  <li>Email: <%= @customer.email %></li>
-  <!-- verified model works, leaving view for other team members -->
-  <li> Product</li>
-  <li> Total</li>
+  <ul>
+    <li>Order#: <%= @order.id%></li>
+    <li>Status: <%= @order.status %></li>
+    <li>Name: <%= @customer.buyer_name %> </li>
+    <li>Email: <%= @customer.email %></li>
+    <li>
+      <section class="order-items checkout">
+        <h3>Ordered Products</h3>
+        <%= render partial: "layouts/order_products", collection: @orderitems, as: :item %>
+      </section>
+    </li>
+        <!-- verified model works, leaving view for other team members -->
+    <li> Total</li>
 </ul>
