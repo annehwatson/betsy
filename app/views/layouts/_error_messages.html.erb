@@ -1,3 +1,4 @@
+<% unless !model %>
 <% if model.errors.messages.any? %>
   <section class="alert callout">
     <h3>There were some problems</h3>
@@ -12,4 +13,5 @@
       <% end %>
     </ul>
   </section>
+<% end %>
 <% end %>
