@@ -5,13 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :find_product
   before_action :find_user
 
-  before_action :require_login, except: [:root, :index]
   before_action :check_user, except: [:root, :index]
-
-  def require_login
-    @user = User.find_by(id: session[:user_id])
-    head :unauthorized unless @user
-  end
 
   def find_user
     if session[:user_id]

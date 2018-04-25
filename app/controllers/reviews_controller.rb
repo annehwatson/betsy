@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-  # before_action :find_product, only: [:new, :create]
-  skip_before_action :require_login
+
   skip_before_action :check_user
 
   def new
