@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_validation :downcase_email
 
   has_many :products, dependent: :destroy
+  # has_many :orders, through: :products ?
 
   validates :username, presence: true, uniqueness: true
   # validates :password, presence: true
