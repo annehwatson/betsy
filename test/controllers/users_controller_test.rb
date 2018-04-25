@@ -37,5 +37,17 @@ describe UsersController do
 
     end
 
+    it "splits email into username" do
+      user = {name: 'name', username: nil, email: 'ada@developers.org', uid: "9999", provider: 'github'}
+
+
+        user_count = User.count
+        User.new(user).must_be :valid?
+        post users_path, params: { user: user }
+        must_respond_with :success
+        User.count.must_equal user_count + 1
+        User.last.username.must_equal "ada"
+
+    end
   end
 end

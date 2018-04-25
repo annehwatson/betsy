@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :set_order
   before_action :find_product
   before_action :find_user
-  before_action :require_login
-  before_action :check_user
 
+  before_action :require_login, except: [:root, :index]
+  before_action :check_user, except: [:root, :index]
 
   def require_login
     @user = User.find_by(id: session[:user_id])

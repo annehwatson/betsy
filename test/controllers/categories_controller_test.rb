@@ -3,7 +3,6 @@ require "test_helper"
 describe CategoriesController do
     describe "authenticated user" do
       before do
-        # @user = User.first
         @user = User.first
         login(@user)
       end
@@ -35,7 +34,6 @@ describe CategoriesController do
           puts "User Name: #{@user.name} User ID: #{@user.id}"
           get new_category_path
 
-          # @user.name.must_equal :dan
           must_respond_with :success
         end
       end
@@ -138,7 +136,7 @@ describe CategoriesController do
           category.name.wont_equal category_data[:name]
         end
 
-        it "sends not_found for a book that does not exist" do
+        it "sends not_found for a category that does not exist" do
           category_id = Category.last.id + 1
 
           patch category_path(category_id)
@@ -176,12 +174,14 @@ describe CategoriesController do
 
     describe "guest user" do
       it "should get a category's products index" do
-        #TODO move this to category tests
+        get categories_path
+        must_respond_with :success
+
       end
 
       it "rejects requests for new category form" do
         get new_category_path
-        must_respond_with :redirect
+        must_respond_with :unauthorized
       end
 
       it "rejects requests to create a category" do
@@ -200,7 +200,7 @@ describe CategoriesController do
 
       it "rejects requests for edit category form" do
         get edit_category_path(Category.first)
-        must_respond_with :redirect, status: :unauthorized
+        must_respond_with :unauthorized
       end
 
       it "rejects requests to update a category" do
