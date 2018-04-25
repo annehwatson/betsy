@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
 product_one:
   name: White Out
   description: A description
@@ -8,3 +9,23 @@ product_one:
   url: google.com
   user_id: 1
   retired: false
+
+# shampoo:
+#   name: dry shampoo
+#   description: best non-shampoo you'll ever have
+#   price: 11.99
+#   stock: 5
+#   url: shampoo.jpg
+#   user_id: 1
+#   category: personal care
+# shoes:
+#   name: vans
+#   price: 10
+#   description: some black vans
+#   user: anne
+#
+# toy:
+#   name: figit spinner
+#   price: 9
+#   description: revolving toy
+#   user: anne
