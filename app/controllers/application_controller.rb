@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :set_order, only: [:root, :index, :show]
+  before_action :set_order, except: [:new, :edit]
   before_action :find_product
   before_action :find_user
 
