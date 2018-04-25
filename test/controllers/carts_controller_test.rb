@@ -68,7 +68,7 @@ describe CartsController do
       product = Product.first
       old_stock_count = product.stock
 
-      
+
     end
 
     it "changes the order status from 'pending' to paid" do
