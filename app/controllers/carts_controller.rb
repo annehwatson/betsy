@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-before_action :reload_order, only: [:update]
+before_action :reload_order, only: [:show]
 
   def show
     @order

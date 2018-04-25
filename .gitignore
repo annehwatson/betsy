@@ -22,3 +22,6 @@
 .env
 
 /coverage/*
+
+log/
+tmp/
