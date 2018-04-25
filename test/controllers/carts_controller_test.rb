@@ -3,7 +3,8 @@ require "test_helper"
 describe CartsController do
   describe "show" do
     it "sends success if the order exists" do
-      get order_path(Order.first)
+      order = Order.first
+      get order_path(order)
       must_respond_with :success
     end
 
@@ -13,21 +14,6 @@ describe CartsController do
 
     it "sends success if the orderitems exist" do
       skip
-    end
-  end
-
-  describe "edit" do
-    it "sends success if the order exists" do
-      get edit_order_path(Order.first)
-      must_respond_with :success
-    end
-
-    it "sends not_found if the order does not exist" do
-      order_id = Order.last.id + 1
-
-      get edit_order_path(order_id)
-
-      must_respond_with :not_found
     end
   end
 
@@ -66,7 +52,10 @@ describe CartsController do
   end
 
   describe "checkout" do
-    #TODO
+    it "renders the shipping and payment info form" do
+      get checkout_path(Order.first)
+      must_respond_with :success
+    end
   end
 
   describe "finalize" do
@@ -81,10 +70,18 @@ describe CartsController do
     it "creates a Buyer Detail record" do
       skip
     end
+
+    it "responds with bad_request if the order has errors" do
+      skip
+    end
   end
 
   describe "order_details" do
-    #TODO
+    it "successfully renders the order details" do
+      order = Order.first
+      get order_path(order)
+      must_respond_with :success
+    end
   end
 
   describe "clear_cart" do
