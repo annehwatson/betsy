@@ -3,8 +3,7 @@ require "test_helper"
 describe ProductsController do
   describe "authenticated user" do
     before do
-      @user = User.first
-      #login(User.first)
+      login(User.first)
     end
 
     describe 'root' do
@@ -42,15 +41,13 @@ describe ProductsController do
         must_respond_with :success
       end
 
-
-
       it "should get a user's product index" do
-        get user_products_path() # TODO <-- fill in these parens?
+        get user_products_path()
         must_respond_with :success
       end
 
       it 'should render 404 if user_id does not exist' do
-        get user_products_path() # TODO <-- fill in these parens?
+        get user_products_path()
         must_respond_with :success
       end
 
@@ -93,13 +90,12 @@ describe ProductsController do
       it "won't add an invalid product" do
         # Arrange
         product_data = {
-          name: 'controller test product',
-          user_id: User.first.id
+          name: '',
         }
         old_product_count = Product.count
 
         # Assumptions
-        Product.new(product_data).must_be :valid?
+        Product.new(product_data).wont_be :valid?
 
         # Act
         post products_path, params: { product: product_data }
@@ -109,6 +105,22 @@ describe ProductsController do
       end
 
     end # ends describe 'create' do
+
+  describe 'guest user' do
+    describe 'root' do
+      it 'should get root path' do
+        get root_path
+        must_respond_with :success
+      end
+    end # ends 'describe 'root' do'
+
+    describe 'products index' do
+      it 'should get the products index' do
+        get products_path
+        must_respond_with :success
+      end
+    end
+  end
 
 
   end # ends 'describe "authenticated user" do'
