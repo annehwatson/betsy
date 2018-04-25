@@ -5,19 +5,19 @@
 # below each fixture, per the syntax in the comments below
 #
 oi_one:
-  user: anne
+  # user: anne
   product: regret
   quantity: 6
   order: order_one
 
 oi_two:
-  user: anne
+  # user: anne
   product: product_one
   quantity: 6
   order: order_one
 
 oi_three:
-  user: anne
+  # user: anne
   product: product_one
   quantity: 3
   order: order_two
