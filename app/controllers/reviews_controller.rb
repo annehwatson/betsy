@@ -1,9 +1,11 @@
 class ReviewsController < ApplicationController
-  before_action :find_product, only: [:new, :create]
+  # before_action :find_product, only: [:new, :create]
+  skip_before_action :require_login
+  skip_before_action :check_user
 
   def new
     #needs validation on session[:user_id] to check that they aren't reviewing their own product they sell; is user_id on product the seller?
-    @review = Review.new(product_id: params[:product_id])
+    @review = Review.new(product_id: @product)
   end
 
   def create
@@ -17,7 +19,7 @@ class ReviewsController < ApplicationController
     #   render :new, status: :bad_request
     if @review.save
       flash[:success] = "Successfully created review"
-      redirect_to product_path(review_params[:product_id])
+      redirect_to product_path(@product)
     else
       flash.now[:error] = "Could not create Review"
       render :new, status: :bad_request
@@ -25,12 +27,12 @@ class ReviewsController < ApplicationController
   end
 
   private
-  def find_product
-    @product = Product.find_by(id: params[:product_id])
-    unless @product
-      head :not_found
-    end
-  end
+  # def find_product
+  #   @product = Product.find_by(id: params[:product_id])
+  #   unless @product
+  #     head :not_found
+  #   end
+  # end
 
   def review_params
     return params.require(:review).permit(:rating, :product_id, :review)
