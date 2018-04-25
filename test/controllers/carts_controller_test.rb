@@ -9,11 +9,15 @@ describe CartsController do
     end
 
     it "sends success if the orders products exist" do
-      skip
+      order = Order.first
+      product = Product.first
+      orderitem = Orderitem.create!(product: product, order_id: order.id, quantity: 1)
+      order.products.must_respond_with :success
     end
 
     it "sends success if the orderitems exist" do
-      skip
+      order = Order.first
+      product = Product.first
     end
   end
 
@@ -60,15 +64,31 @@ describe CartsController do
 
   describe "finalize" do
     it "reduces the number of inventory for each product purchased" do
-      skip
+      order = Order.first
+      product = Product.first
+      old_stock_count = product.stock
+
+      
     end
 
     it "changes the order status from 'pending' to paid" do
-      skip
+      skip #what is order status initialized as?
     end
 
     it "creates a Buyer Detail record" do
-      skip
+      order = Order.first
+      payment_info = {
+        email: "test@test.com",
+        mailing_address: "123 Street",
+        buyer_name: "Buyer Person",
+        card_number: "1234567890",
+        expiration: "01/01",
+        cvv: "1234",
+        zipcode: "12345",
+        order_id: order.id
+      }
+      buyer = Buyerdetail.new(payment_info)
+      post checkout_path(order.id)
     end
 
     it "responds with bad_request if the order has errors" do
@@ -86,7 +106,7 @@ describe CartsController do
 
   describe "clear_cart" do
     it "clears the current cart" do
-      #TODO
+      #TODO where is this executed?
     end
   end
 end

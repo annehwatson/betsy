@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   name: MyString
-#
-# two:
-#   name: MyString
+product_one:
+  name: White Out
+  description: A description
+  price: 1.00
+  stock: 5
+  url: google.com
+  user_id: 1
+  retired: false
