@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :set_order, except: [:new, :edit]
+  before_action :set_order
   before_action :find_product
   before_action :find_user
+  before_action :require_login
+  before_action :check_user
 
 
   def require_login
@@ -39,6 +41,14 @@ class ApplicationController < ActionController::Base
     if params[:product_id]
       @product = Product.find_by(id: params[:product_id])
       head :not_found unless @product
+    end
+  end
+
+  def check_user
+    unless @login_user
+      flash[:status] = :failure
+      flash[:result_text] = "You must log in to see this content"
+      redirect_to root_path
     end
   end
 

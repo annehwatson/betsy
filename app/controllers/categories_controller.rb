@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :edit, :update, :destroy]
-
+    skip_before_action :require_login, only: [:index, :show]
+    skip_before_action :check_user, only: [:index, :show]
   def index
     @categories = Category.all
   end
@@ -15,8 +16,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if @login_user
+    # if @login_user
       @category = Category.new(category_params)
+
       if @category.save
         flash[:success] = "Successfully created #{@category.name}"
         redirect_to categories_path
@@ -24,10 +26,10 @@ class CategoriesController < ApplicationController
         flash.now[:error] = "Validations failed"
         render :new, status: :bad_request
       end
-    else
-      flash.now[:error] = "You must be logged in to create a category"
-      render :new, status: :unauthorized
-    end
+    # else
+    #   flash.now[:error] = "You must be logged in to create a category"
+    #   render :new, status: :unauthorized
+    # end
   end
 
   def show; end

@@ -4,7 +4,8 @@ describe CategoriesController do
     describe "authenticated user" do
       before do
         # @user = User.first
-        login(User.first)
+        @user = User.first
+        login(@user)
       end
 
       describe "index" do
@@ -31,7 +32,10 @@ describe CategoriesController do
 
       describe "new" do
         it "responds with success" do
+          puts "User Name: #{@user.name} User ID: #{@user.id}"
           get new_category_path
+
+          # @user.name.must_equal :dan
           must_respond_with :success
         end
       end
