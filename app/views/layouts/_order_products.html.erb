@@ -7,7 +7,7 @@
     <td>
       <td><%=item.quantity%></td>
       <td>
-        <% if quant ity_edit?(request.fullpath) %>
+        <% if quantity_edit?(request.fullpath) %>
         <%= form_with url: cart_path(@order), method: :patch do |f| %>
           <%= f.hidden_field :product_id, value: product.id%>
           <%= f.number_field :quantity, :style => "width:10vw;" %>
