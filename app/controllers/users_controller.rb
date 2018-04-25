@@ -13,12 +13,7 @@ class UsersController < ApplicationController
   end
 
 private
-
   def user_params
     params.require(:user).permit(:name, :username, :password, :email)
-  end
-
-  def render_404
-    render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 end
