@@ -1,6 +1,6 @@
 require 'simplecov'
-require 'simplecov-console'
-SimpleCov.formatter = SimpleCov.formatter = SimpleCov::Formatter::Console
+# require 'simplecov-console'
+# SimpleCov.formatter = SimpleCov.formatter = SimpleCov::Formatter::Console
 # SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 #   SimpleCov::Formatter::HTMLFormatter,
 #   SimpleCov::Formatter::Console,
@@ -11,6 +11,7 @@ SimpleCov.start 'rails' do
   add_filter '/app/mailers/application_mailer.rb'
   add_filter '/app/channels/application_cable/channel.rb'
   add_filter '/app/channels/application_cable/connection.rb'
+  add_filter '/app/helpers/'
 end
 
 ENV["RAILS_ENV"] = "test"
