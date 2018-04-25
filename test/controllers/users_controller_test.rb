@@ -20,22 +20,4 @@ describe UsersController do
     end
   end
 
-  describe 'create' do
-    it 'succeeds when it creates a new user' do
-      user = User.new(name: 'name', username: 'username', email: 'ada@developers.org', uid: "99999", provider: 'github')
-      user.save
-      must_respond_with :success
-    end
-    it "it doesn't add an invalid user" do
-      user = {name: 'name', username: nil, email: 'ada@developers.org', uid: nil, provider: 'github'}
-
-        user_count = User.count
-        User.new(user).wont_be :valid?
-        post users_path, params: { user: user }
-        must_respond_with :bad_request
-        User.count.must_equal user_count
-
-    end
-
-  end
 end

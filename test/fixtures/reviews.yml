@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  rating: 1
-  review: MyText
-
-two:
-  rating: 1
-  review: MyText
+# one:
+#   text:
+#   rating: 4
+#   product_id: shoes
+#
+# two:
+#   text: A good product
+#   rating: 5
+#   product_id: toy

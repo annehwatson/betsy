@@ -8,12 +8,18 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.product = @product
+    # @review.product = @product
+    # if @review.save
+    #   flash[:success] = "Successfully created review"
+    #   redirect_to product_path(@review.product)
+    # else
+    #   flash.now[:error] = "Could not create new review"
+    #   render :new, status: :bad_request
     if @review.save
       flash[:success] = "Successfully created review"
-      redirect_to product_path(@review.product)
+      redirect_to product_path(review_params[:product_id])
     else
-      flash.now[:error] = "Could not create new review"
+      flash.now[:error] = "Could not create Review"
       render :new, status: :bad_request
     end
   end
@@ -27,7 +33,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    return params.require(:review).permit(:rating, :review)
+    return params.require(:review).permit(:rating, :product_id, :review)
   end
 
 end
