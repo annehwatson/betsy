@@ -1,12 +1,7 @@
-<ul class="cart-products">
-<% @products.each do |product| %>
-<li><%= image_tag (product.url) %></li>
-<li><%= product.name %></li>
+<section class="cart-products">
+  <table>
+  <%= render partial: "layouts/order_products", collection: @orderitems, as: :item %>
+</table>
 
-<li>qty: <%= Orderitem.find_by(product_id: product.id).quantity%></li>
-<% end %>
-</ul>
-
-
-<%= link_to "edit cart", edit_cart_path(@order), class: "button" %>
 <%= link_to "checkout", checkout_path(@order), class: "button" %>
+</section>
