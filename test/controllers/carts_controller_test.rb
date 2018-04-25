@@ -8,11 +8,11 @@ describe CartsController do
     end
 
     it "sends success if the orders products exist" do
-
+      skip
     end
 
     it "sends success if the orderitems exist" do
-
+      skip
     end
   end
 
@@ -33,33 +33,33 @@ describe CartsController do
 
   describe "update" do
     it "updates an existing order with valid data" do
-
+      skip
     end
 
     it "sends failure for invalid data" do
-
+      skip
     end
 
     it "removes a product from the cart" do
-
+      skip
     end
 
     it "changes the quantity of an existing product in the cart" do
-
+      skip
     end
 
     it "sends not_found for an order that does not exist" do
-
+      skip
     end
   end
 
   describe "add_to_cart" do
     it "successfully adds in-stock products to the cart" do
-
+      skip
     end
 
     it "does not add products to the cart that are out of stock" do
-
+      skip
     end
 
 
@@ -71,15 +71,15 @@ describe CartsController do
 
   describe "finalize" do
     it "reduces the number of inventory for each product purchased" do
-
+      skip
     end
 
     it "changes the order status from 'pending' to paid" do
-
+      skip
     end
 
     it "creates a Buyer Detail record" do
-
+      skip
     end
   end
 
