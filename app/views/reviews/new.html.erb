@@ -1,13 +1,8 @@
-<h1>Write a Review for <%= Product.find(params[:id]).name %></h1>
-<!-- ratings_array = [ '*', '**', '***', '****', '*****'] -->
-<%= form_for @review do |f| %>
+<h1>Write a Review for <%= @product.name %></h1>
+
+<%= form_for [@product, @review] do |f| %>
   <%= f.label :rating %>
-  <%= f.select :rating, (1..5).to_a %>
-  <!-- f.select :rating, ratings_array -->
-
-  <!-- changing the select to ratings_array of stars broke the code because it tries to save the stars to rating instead of a mapped integer value -->
-
-  <%= f.hidden_field :product_id %>
+  <%= f.select :rating, ratings_options %>
 
   <%= f.label :review %>
   <%= f.text_area :review %>
