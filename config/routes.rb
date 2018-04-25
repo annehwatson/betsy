@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'products#root'
 
-  resources :products
-  get '/products/:id/reviews/new', to: 'reviews#new', as: 'new_product_review'
-  resources :users
+ # TODO changed using nested routes instead - leaving these here so you can see what we had previously
+  # get '/products/:id/reviews/new', to: 'reviews#new', as: 'new_product_review'
+
   resources :products do
-    resources :users, only: [:index]
+   resources :reviews, only: [:new, :create]
   end
 
-  resources :reviews, only: [:new, :create]
+  resources :users do
+    resources :products, only: [:index]
+  end
 
   resources :categories do
     resources :products, only: [:index]
