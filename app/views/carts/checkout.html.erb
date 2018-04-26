@@ -9,13 +9,13 @@
   <%= f.text_field :buyer_name %>
 
   <%= f.label :card_number %>
-  <%= f.number_field :card_number %>
+  <%= f.number_field :card_number, pattern: '/[0-9]{12,19}/', message: 'CC must be a number, 12- 19 digits' %>
 
   <%= f.label :expiration %>
-  <%= f.text_field :expiration %>
+  <%= f.text_field :expiration, pattern '//' %>
 
   <%= f.label :cvv %>
-  <%= f.text_field :cvv %>
+  <%= f.text_field :cvv, pattern: '/[0-9]{3}/', message: 'Must be three digits' %>
 
   <%= f.label :zipcode %>
   <%= f.text_field :zipcode %>

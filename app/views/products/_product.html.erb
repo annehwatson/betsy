@@ -1,7 +1,11 @@
 <section class="product-item">
   <article>
     <h3><%= link_to item.name, item %></h3>
+    <% if item.url %>
     <%= image_tag (item.url) %>
+    <% else %>
+    <%= url_tag (item.url) %>
+    <% end %>
   </article>
   <article>
   <ul>

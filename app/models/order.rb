@@ -2,6 +2,9 @@ class Order < ApplicationRecord
   has_many :orderitems
   has_many :products, through: :orderitems, source: :product
 
+  validates :email, presence: true, format: '/\w+@\w+\.{1}[a-zA-Z]{2,}/'
+
+
   def find_existing(orderitem)
     result = orderitems.find_by(order_id: self.id, product_id: orderitem.product_id)
 
