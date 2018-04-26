@@ -76,4 +76,15 @@ class ActiveSupport::TestCase
     must_redirect_to order_path(order)
   end
 
+
+  def retire_product(product_id)
+    product = Product.find(product_id)
+
+    product.retire
+
+    result = Product.find(product_id)
+
+    result.retired.must_be true
+  end
+
 end

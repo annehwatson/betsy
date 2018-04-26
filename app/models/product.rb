@@ -34,4 +34,7 @@ class Product < ApplicationRecord
     return average/count
   end
 
+  def retire
+      self.toggle! :retired
+  end
 end
