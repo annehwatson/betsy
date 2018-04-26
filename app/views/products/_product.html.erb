@@ -30,8 +30,15 @@
   <article>
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <h4> average_rating  </h4>
-      <p> reviews.count </p>
+      <p><%= item.average_rating %> average rating</p>
+      <p>
+        <%= item.reviews.count %>
+        <% if item.reviews.count == 1 %>
+          review
+        <% else %>
+          reviews
+        <% end %>
+      </p>
 
     </section>
   </article>
