@@ -58,7 +58,6 @@ before_action :reload_order, only: [:show]
 
   def finalize
     @paymentinfo = Buyerdetail.new(payment_params)
-    @paymentinfo.order_id = @order.id
 
     if @paymentinfo.save
       @order.status = :paid

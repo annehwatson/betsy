@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :products, through: :orderitems
   has_many :users, through: :products
 
-  validates :email, presence: true, format: '/\w+@\w+\.{1}[a-zA-Z]{2,}/'
+  validates :email, presence: true
 
 
   def find_existing(orderitem)
