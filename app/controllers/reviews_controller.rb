@@ -16,10 +16,11 @@ class ReviewsController < ApplicationController
     # else
     #   flash.now[:error] = "Could not create new review"
     #   render :new, status: :bad_request
-    @review.product_id = @product.id #added this line back
-    if @user && @user.products.include?(@review.product)
+    @review.product_id = @product.id
+    #added this line back
+    if session[:user_id] = @product.user_id
       flash[:error] = "You can't review your own products!"
-      redirect_to product_path(@review.product)
+      redirect_to product_path(@review.product_id)
 
     elsif @review.save
       flash[:success] = "Successfully created review"
