@@ -34,13 +34,16 @@ skip_before_action :check_user
   def add_to_cart
     flash[:status] = :failure
     quantity = params[:quantity].to_i
+
+    puts "OrderItem ID param before find_existing: #{params[:id]}"
     if @product.sufficient_stock(quantity)
       orderitem = Orderitem.new(product: @product, order_id: @order.id, quantity: quantity)
       orderitem = @order.find_existing(orderitem)
-
-      puts "OrderItem ID after find_existing: #{orderitem.id}"
+        puts "#{@order.products.count} products count"
 
       if orderitem.save
+          puts "OrderItem ID after find_existing: #{orderitem.id}"
+          puts "#{@order.products.count} products count"
         flash[:status] = :success
         flash[:result_text] = "Successfully added #{quantity} #{@product.name} to cart"
       else

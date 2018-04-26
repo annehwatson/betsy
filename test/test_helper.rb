@@ -61,4 +61,19 @@ class ActiveSupport::TestCase
     must_redirect_to root_path
   end
 
+  def new_buyer(order)
+    payment_info = {
+      email: "test@test.com",
+      mailing_address: "123 Street",
+      buyer_name: "Buyer Person",
+      card_number: "1234567890",
+      expiration: "01/01",
+      cvv: "1234",
+      zipcode: "12345",
+      order_id: order.id
+    }
+    post checkout_path(order.id), params: { buyerdetail: payment_info }
+    must_redirect_to order_path(order)
+  end
+
 end
