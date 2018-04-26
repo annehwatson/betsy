@@ -3,15 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_order
   before_action :find_product
-  before_action :find_user
-
-  before_action :check_user, except: [:root, :index]
-
-  def find_user
-    if session[:user_id]
-      @login_user = User.find_by(id: session[:user_id])
-    end
-  end
+  before_action :current_user
+  before_action :require_login
 
   def render_404
     raise ActionController::RoutingError.new('Not Found')
@@ -38,12 +31,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_user
-    unless @login_user
+  def current_user
+    @user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  end
+
+  def require_login
+    unless current_user
       flash[:status] = :failure
       flash[:result_text] = "You must log in to see this content"
-      redirect_to root_path
+      redirect_back fallback_location: root_path
     end
   end
+
 
 end

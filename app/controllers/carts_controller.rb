@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 before_action :reload_order, only: [:show]
-skip_before_action :check_user
+skip_before_action :require_login
 
   def show
     @order
@@ -62,10 +62,11 @@ skip_before_action :check_user
 
   def finalize
     @paymentinfo = Buyerdetail.new(payment_params)
+    @paymentinfo.assign_attributes(order_id: @order.id)
 
     if @paymentinfo.save
       @order.status = :paid
-
+      @order.assign_attributes(buyerdetail_id: @paymentinfo.id)
       @order.products.each do |product|
         quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
         product.decrement_stock(quantity)
@@ -86,10 +87,11 @@ skip_before_action :check_user
   end
 
   def order_details
-    @order
+    puts "Here are the parameters that Maja helped you with #{params.inspect}"
+    @order = Order.find(params[:id])
     @products = @order.products
     @orderitems = Orderitem.where(order_id: @order.id)
-    @customer = Buyerdetail.find_by(@order.buyerdetails_id)
+    @customer = Buyerdetail.find_by(@order.buyerdetail_id)
   end
 
   private
