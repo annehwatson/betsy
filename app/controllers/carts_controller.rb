@@ -62,7 +62,6 @@ skip_before_action :check_user
 
   def finalize
     @paymentinfo = Buyerdetail.new(payment_params)
-    @paymentinfo.order_id = @order.id
 
     if @paymentinfo.save
       @order.status = :paid
