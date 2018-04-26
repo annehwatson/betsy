@@ -85,7 +85,8 @@ skip_before_action :check_user
   end
 
   def order_details
-    @order
+    puts "Here are the parameters that Maja helped you with #{params.inspect}"
+    @order = Order.find(params[:id])
     @products = @order.products
     @orderitems = Orderitem.where(order_id: @order.id)
     @customer = Buyerdetail.find_by(@order.buyerdetail_id)
