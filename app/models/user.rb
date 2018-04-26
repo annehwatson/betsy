@@ -8,6 +8,27 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   # validates :password, presence: true
   # validates :email, uniqueness: { message: 'Email is already in use' }
+  def user_name(auth_hash)
+    return if auth_hash.nil?
+    email = auth_hash.split('@')
+    return email[0]
+  end
+
+  def self.build_from_github(auth_hash)
+    auth_hash["info"]["nickname"] |= user_name(auth_hash["info"]["email"])
+
+    user_data = {
+      uid: auth_hash[:uid],
+      username: name,
+      email: auth_hash["info"]["email"],
+      provider: auth_hash[:provider]
+    }
+
+    user = self.new(user_data)
+    if user.save
+      return user
+    end
+  end
 
   private
   def downcase_email

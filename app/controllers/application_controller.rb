@@ -10,12 +10,6 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  def user_name(auth_hash)
-    return if auth_hash.nil?
-    email = auth_hash.split('@')
-    return email[0]
-  end
-
   def set_order
     @order = Order.find_by(id: session[:order_id])
     if !@order || @order.status == "paid"
@@ -32,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @login_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def require_login
