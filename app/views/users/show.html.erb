@@ -2,14 +2,14 @@
 <h3>Merchant Summary</h3>
 <section class='user-info'>
 
-  <%= render partial: "layouts/error_messages", locals: { model: @user } %>
+  <%= render partial: "layouts/error_messages", locals: { model: @login_user } %>
 
 <article>
-  <p>Joined site <%= render_date @user.created_at %></p>
+  <p>Joined site <%= render_date @login_user.created_at %></p>
 
-  <p>Name: <span><%= @user.name %></span></p>
-  <p>Username: <span><%= @user.username %></span></p>
-  <p>Email: <span><%= @user.email %></span></p>
+  <p>Name: <span><%= @login_user.name %></span></p>
+  <p>Username: <span><%= @login_user.username %></span></p>
+  <p>Email: <span><%= @login_user.email %></span></p>
 
   <%= link_to "Back to Product List", root_path, class: "hollow button" %>
 
