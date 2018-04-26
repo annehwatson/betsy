@@ -57,6 +57,7 @@ nav ul {
   font-size: .75em;
   content: '▼';
   padding: .5em;
+  position: relative;
   }
 
   nav ul ul {
@@ -103,7 +104,11 @@ nav ul {
     }
   }
 
-  .icon-cart {
+li > i:after {
+  font-size: .75em;
+  padding: .5em;
+  }
+  /* .icon-cart {
     width: 48px;
     height: 48px;
     position: relative;
@@ -212,7 +217,7 @@ nav ul {
     position: absolute;
     left: 200%;
     bottom: 0;
-  }
+  } */
 
 footer {
   font-size: 0.5em;
