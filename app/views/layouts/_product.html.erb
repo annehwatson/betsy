@@ -26,8 +26,8 @@
   <article>
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <h4> rating </h4>
-      <p> reviews </p>
+      <h4> <%= '%.2f' %item.average_rating %> average rating </h4>
+      <p> <%= item.reviews.count %> reviews </p>
 
     </section>
   </article>
