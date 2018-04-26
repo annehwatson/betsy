@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :orderitems
-  has_many :products, through: :orderitems, source: :product
+  has_many :products, through: :orderitems
+  has_many :users, through: :products
 
   def find_existing(orderitem)
     result = orderitems.find_by(order_id: self.id, product_id: orderitem.product_id)
