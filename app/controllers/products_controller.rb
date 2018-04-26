@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :delete]
   skip_before_action :require_login, only: [:root, :index, :show]
-  skip_before_action :check_user, only: [:root, :index, :show]
+
 
 
   def root

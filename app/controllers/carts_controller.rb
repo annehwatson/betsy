@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
 before_action :reload_order, only: [:show]
 skip_before_action :require_login
-skip_before_action :check_user
 
   def show
     @order
@@ -60,11 +59,11 @@ skip_before_action :check_user
 
   def finalize
     @paymentinfo = Buyerdetail.new(payment_params)
-    @paymentinfo.order_id = @order.id
+    @paymentinfo.assign_attributes(order_id: @order.id)
 
     if @paymentinfo.save
       @order.status = :paid
-
+      @order.assign_attributes(buyerdetail_id: @paymentinfo.id)
       @order.products.each do |product|
         quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
         product.decrement_stock(quantity)

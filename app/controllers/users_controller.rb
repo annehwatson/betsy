@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-
-  def new
-    @user = User.new
-  end
+  before_action :require_login, only: [:show]
+  # def new
+  #   @user = User.new
+  # end
 
   def show
     @user = User.find_by(id: params[:id])
