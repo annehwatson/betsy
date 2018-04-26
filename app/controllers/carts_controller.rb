@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
 before_action :reload_order, only: [:show]
+skip_before_action :check_user
 
   def show
     @order
