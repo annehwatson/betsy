@@ -106,5 +106,10 @@ Review.create!([
     product_id: 3,
     rating: 5,
     review: "Priceless. Better than Rails magic."
+  },
+  {
+    product_id: 6,
+    rating: 1,
+    review: "This schmuck wasn't able to get a good outcome for my very compelling case wherein I was stuck in the deli elevator at Ada for hours and it was super traumatizing. Find someone else."
   }
 ])
