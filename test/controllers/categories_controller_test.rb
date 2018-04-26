@@ -7,28 +7,6 @@ describe CategoriesController do
         login(@user)
       end
 
-      describe "index" do
-        it "should get a category's products index" do
-          #TODO move this to category tests
-        end
-
-        it "sends a success respond when there are many categories" do
-          Category.count.must_be :>, 0
-
-          get categories_path
-
-          must_respond_with :success
-        end
-
-        it "sends a success respond when there are no categories" do
-          Category.destroy_all
-
-          get categories_path
-
-          must_respond_with :success
-        end
-      end
-
       describe "new" do
         it "responds with success" do
           puts "User Name: #{@user.name} User ID: #{@user.id}"
@@ -173,8 +151,36 @@ describe CategoriesController do
     end
 
     describe "guest user" do
+      describe "index" do
+        before do
+          @category = Category.first
+          @product = Product.first
+          @product.categories << @category
+        end
+
+        it "should get a category's products index" do
+          get category_products_path(@category.id)
+          must_respond_with :success
+        end
+
+        it "sends a success respond when there are many categories" do
+          Category.count.must_be :>, 0
+
+          get categories_path
+
+          must_respond_with :success
+        end
+
+        it "sends a success respond when there are no categories" do
+          Category.destroy_all
+
+          get categories_path
+
+          must_respond_with :success
+        end
+      end
       it "should get a category's products index" do
-        get categories_path
+        get category_products_path, params: {category_id: Category.first.id}
         must_respond_with :success
 
       end

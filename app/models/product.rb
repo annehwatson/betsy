@@ -2,7 +2,6 @@ class Product < ApplicationRecord
 
 has_and_belongs_to_many :categories
 has_many :orderitems
-has_many :included_in_orders, through: :orderitems, source: :order
 has_many :reviews
 belongs_to :user
 

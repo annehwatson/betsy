@@ -5,7 +5,7 @@ odor:
   price: 12.95
   user: anne
   stock: 20
-  # url: google.com
+  url: http://placekitten.com/200/300
   retired: false
 
 regret:
@@ -13,7 +13,7 @@ regret:
   price: 1000000000.99
   user: anne
   stock: 200000
-  # url: google.com
+  url: http://placekitten.com/200/300
   retired: false
 
 product_one:
@@ -21,8 +21,8 @@ product_one:
   description: A description
   price: 1.00
   stock: 5
-  url: google.com
-  # user: anne
+  url: http://placekitten.com/200/300
+  user: anne
   retired: false
 
 # shampoo:

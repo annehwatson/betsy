@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :check_user, only: [:show]
+  before_action :require_login, only: [:new, :edit, :update, :destroy]
   before_action :find_category, only: [:show, :edit, :update, :destroy]
 
   def index
