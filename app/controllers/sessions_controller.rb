@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-    skip_before_action :require_login
     skip_before_action :check_user
 
   def new
@@ -8,7 +7,6 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
-    # if auth_hash['uid']
       @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
 
       if @user
@@ -37,7 +35,6 @@ class SessionsController < ApplicationController
   def logout
     if session[:user_id]
       session[:user_id] = nil
-      # session.delete([:user_id])
       flash[:result_text] = "Successfully logged out"
       redirect_to root_path
     end

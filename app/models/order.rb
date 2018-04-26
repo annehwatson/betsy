@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :orderitems
-  has_many :products, through: :orderitems, source: :product
+  has_many :products, through: :orderitems
+  has_many :users, through: :products
 
   validates :email, presence: true, format: '/\w+@\w+\.{1}[a-zA-Z]{2,}/'
 

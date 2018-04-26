@@ -181,7 +181,10 @@ describe CategoriesController do
 
       it "rejects requests for new category form" do
         get new_category_path
-        must_respond_with :unauthorized
+
+        result = flash[:status]
+        must_redirect_to :root
+        result.must_equal :failure
       end
 
       it "rejects requests to create a category" do
@@ -194,7 +197,8 @@ describe CategoriesController do
 
         post categories_path, params: { category: category_data }
 
-        must_respond_with :unauthorized
+        must_redirect_to :root
+        result.must_equal :failure
         Category.count.must_equal old_category_count
       end
 
@@ -213,7 +217,8 @@ describe CategoriesController do
 
         patch category_path(category), params: { category: category_data }
 
-        must_respond_with :unauthorized
+        must_redirect_to :root
+        result.must_equal :failure
       end
 
       it "rejects requests to delete a category" do
@@ -222,7 +227,8 @@ describe CategoriesController do
 
         delete category_path(category_id)
 
-        must_respond_with :unauthorized
+        must_redirect_to :root
+        result.must_equal :failure
         Category.count.must_equal old_category_count
       end
   end
