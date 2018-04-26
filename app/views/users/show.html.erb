@@ -11,7 +11,7 @@
   <p>Username: <span><%= @login_user.username %></span></p>
   <p>Email: <span><%= @login_user.email %></span></p>
 
-  <%= link_to "Back to Product List", root_path, class: "hollow button" %>
+  <%= link_to "Back to All Products", products_path, class: "hollow button" %>
 
   <%= link_to "Add New Product", new_product_path, class: 'hollow button'  %>
 </article>
@@ -24,10 +24,19 @@
           <th>Product</th>
           <th>Stock</th>
           <th>Price</th>
+          <th>Reviews</th>
         </tr>
       </thead>
       <tbody>
+        <% @login_user.products.each do |p| %>
+          <tr>
+            <td><%= link_to p.name, product_path(p) %></td>
+            <td><%= p.stock %></td>
+            <td>$<%= sprintf("%.02f", p.price) %></td>
+            <td><%= p.reviews.count %></td>
 
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </article>
