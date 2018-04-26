@@ -34,16 +34,13 @@ skip_before_action :require_login
   def add_to_cart
     flash[:status] = :failure
     quantity = params[:quantity].to_i
-
-    puts "OrderItem ID param before find_existing: #{params[:id]}"
     if @product.sufficient_stock(quantity)
       orderitem = Orderitem.new(product: @product, order_id: @order.id, quantity: quantity)
       orderitem = @order.find_existing(orderitem)
-        puts "#{@order.products.count} products count"
+
+      puts "OrderItem ID after find_existing: #{orderitem.id}"
 
       if orderitem.save
-          puts "OrderItem ID after find_existing: #{orderitem.id}"
-          puts "#{@order.products.count} products count"
         flash[:status] = :success
         flash[:result_text] = "Successfully added #{quantity} #{@product.name} to cart"
       else
@@ -87,11 +84,10 @@ skip_before_action :require_login
   end
 
   def order_details
-    puts "Here are the parameters that Maja helped you with #{params.inspect}"
     @order = Order.find(params[:id])
     @products = @order.products
     @orderitems = Orderitem.where(order_id: @order.id)
-    @customer = Buyerdetail.find_by(@order.buyerdetail_id)
+    @customer = Buyerdetail.find_by(id: @order.buyerdetail_id)
   end
 
   private
@@ -101,5 +97,9 @@ skip_before_action :require_login
 
   def reload_order
     @order.reload
+  end
+
+  def clear_cart
+    @order = Order.find_by(session[:order_id])
   end
 end

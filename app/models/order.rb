@@ -3,8 +3,6 @@ class Order < ApplicationRecord
   has_many :products, through: :orderitems
   has_many :users, through: :products
 
-  validates :email, presence: true
-
 
   def find_existing(orderitem)
     result = orderitems.find_by(order_id: self.id, product_id: orderitem.product_id)
