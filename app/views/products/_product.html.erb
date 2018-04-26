@@ -31,6 +31,7 @@
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
       <p><%= '%.2f' %item.average_rating %> average rating</p>
+      <p><%= item.stock %> in stock</p>
       <p>
         <%= item.reviews.count %>
         <% if item.reviews.count == 1 %>
