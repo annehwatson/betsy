@@ -44,4 +44,19 @@ describe User do
       user2.errors.messages.must_include :username
     end
   end
+
+  describe 'calculate revenue' do
+    it "figures out total revenue for user" do
+      user = User.first
+      user.products.wont_be_nil
+      user.orders.wont_be_nil
+
+      expected_result = 0
+      user.orders.each do |order|
+        expected_result += order.total
+      end
+      expected_result.must_equal nil
+      user.total_revenue.must_equal expected_result
+    end
+  end
 end

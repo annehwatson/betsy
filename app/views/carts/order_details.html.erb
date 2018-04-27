@@ -10,11 +10,9 @@
         <table>
         <tr><h3>Ordered Products</h3></tr>
         <tr>
-          <th width="400"></th>
-          <th>Product</th>
-          <th width="200">Price</th>
-          <th></th>
-          <th>Quantity</th>
+          <th colspan="2">Product</th>
+          <th colspan="2">Price</th>
+          <th >Quantity</th>
           <% if quantity_edit?(request.fullpath) %>
           <th>Change Quantity</th>
           <th>Remove Item</th>
@@ -24,12 +22,21 @@
         </tr>
 
         <%= render partial: "layouts/order_products", collection: @orderitems, as: :item %>
+        <tr class="table-break"></tr>
+        <tr>
+          <th colspan="5">Tax:</th>
+          <td><%= number_to_currency @order.tax %></td>
+        </tr>
+        <tr><th colspan="5">Total</th>
+          <td> <%= number_to_currency @order.order_total %></td></tr>
         <table>
       </section>
     </li>
-    <li>Tax: <%= number_to_currency @paid_order.tax %></li>
-    <li> Total: <%= number_to_currency @order.order_total %></li>
 </ul>
 <section>
-  <%= link_to "cancel order", order_path(order), params: {order: {status: :cancel}}, method: :patch, class: "button" %>
+  <% if @order.status != "cancelled" || @order.status != "complete" %>
+  <%= button_to "cancel order", order_path(@paid_order), params: {order: {status: :cancelled}}, method: :patch, class: "button" %>
+  <% customer = Buyerdetail.find_by(order_id: @paid_order.id) %>
+  <%= link_to "edit order", checkout_path(@paid_order), params: {buyerdetail: customer.attributes}, class: "button" %>
+  <% end %>
 </section>

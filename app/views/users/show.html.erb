@@ -71,15 +71,12 @@
     </section>
 
     <section id="orders" class="tab-panel">
-      <%= link_to "mark shipped", order_path(@order), params: {order: {status: :shipped}}, method: :patch, class: "button" %>
-      <h2>6A. Märzen</h2>
-      <p><strong>Overall Impression:</strong> An elegant, malty German amber lager with a clean, rich, toasty and bready malt flavor, restrained bitterness, and a dry finish that encourages another drink. The overall malt impression is soft, elegant, and complex, with a rich aftertaste that is never cloying or heavy.</p>
-      <p><strong>History:</strong> As the name suggests, brewed as a stronger “March beer” in March and lagered in cold caves over the summer. Modern versions trace back to the lager developed by Spaten in 1841, contemporaneous to the development of Vienna lager. However, the Märzen name is much older than 1841; the early ones were dark brown, and in Austria the name implied a strength band (14 °P) rather than a style. The German amber lager version (in the Viennese style of the time) was first served at Oktoberfest in 1872, a tradition that lasted until 1990 when the golden Festbier was adopted as the standard festival beer.</p>
+      <% @orders.each do |order| %>
+      <%= link_to "mark shipped", order_path(order), params: {order: {status: :shipped}}, method: :patch, class: "button" %>
+      <% end %>
     </section>
     <section id="accounting" class="tab-panel">
-      <h2>6B. Rauchbier</h2>
-      <p><strong>Overall Impression:</strong>  An elegant, malty German amber lager with a balanced, complementary beechwood smoke character. Toasty-rich malt in aroma and flavor, restrained bitterness, low to high smoke flavor, clean fermentation profile, and an attenuated finish are characteristic.</p>
-      <p><strong>History:</strong> A historical specialty of the city of Bamberg, in the Franconian region of Bavaria in Germany. Beechwood-smoked malt is used to make a Märzen-style amber lager. The smoke character of the malt varies by maltster; some breweries produce their own smoked malt (rauchmalz).</p>
+      <h2>Earnings</h2>
     </section>
   </section>
 

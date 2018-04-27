@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-before_action :reload_order, only: [:show]
-skip_before_action :require_login
+  before_action :reload_order, only: [:show]
+  skip_before_action :require_login
 
   def show
     @order
@@ -90,6 +90,22 @@ skip_before_action :require_login
     @products = @order.products
     @orderitems = Orderitem.where(order_id: @order.id)
     @customer = Buyerdetail.find_by(id: @order.buyerdetail_id)
+  end
+
+  def order_status
+    @order = Order.find(params[:id])
+    if @order.status != :complete
+      @order.status = params[:order][:status]
+      if @order.save
+        flash[:status] = :success
+        flash[:result_text] = "You have successfully cancelled this order."
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Could not cancel order."
+        flash[:messages] = @order.errors.messages
+      end
+    end
+    redirect_back fallback_location: order_path(@order)
   end
 
   private
