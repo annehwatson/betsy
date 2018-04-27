@@ -24,7 +24,7 @@
   <div class='product-reviews'>
     <p>Description: <%= item.description %></p>
     <p><%= '%.2f' %item.average_rating %> average rating</p>
-    <p>
+    <p><%= item.stock %> in stock</p>
       <%= item.reviews.count %>
       <% if item.reviews.count == 1 %>
       review
