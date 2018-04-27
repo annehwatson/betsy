@@ -1,3 +1,4 @@
+<% if !item.retired %>
 <section class="product-item">
   <article>
     <h3><%= link_to item.name, item %></h3>
@@ -26,10 +27,15 @@
   <article>
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <h4> <%= '%.2f' %item.average_rating %> average rating </h4>
-      <p><%= item.stock %> in stock</p>
+      <h4> average rating <% item.average_rating.times do %>
+          <%= "💧" %>
+        <% end %> </h4>
       <p> <%= item.reviews.count %> reviews </p>
-
     </section>
   </article>
 </section>
+<% else %>
+<section class="no-product">
+  This item has been discontinued.
+</section>
+<% end %>

@@ -17,12 +17,10 @@
  *= require foundation_and_overrides
 
  */
-h1 {
-font-family: 'Lora', serif;
-}
 
-body {
-  font-family: 'Gothic A1', sans-serif;
+
+*  {
+ font-family: 'Roboto Condensed', sans-serif;
 }
 
 body ul {
@@ -39,6 +37,7 @@ nav {
 
 nav ul {
   list-style-type: none;
+  z-index: 8;
 }
 
 @media (min-width: 800px) {
@@ -46,10 +45,12 @@ nav ul {
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 2em;
+      z-index: 8;
     }
 
     .menu li:first-of-type {
       align-self: flex-start;
+      z-index: 8;
     }
 
   .menu-item-has-children > a:after{
@@ -114,7 +115,7 @@ li > i:after {
     font-size: 1.5em;
     color: rgb(91, 22, 115);
 }
-  /* .icon-cart {
+  .icon-cart {
     width: 48px;
     height: 48px;
     position: relative;
@@ -223,7 +224,7 @@ li > i:after {
     position: absolute;
     left: 200%;
     bottom: 0;
-  } */
+  }
 
 footer {
   font-size: 0.5em;

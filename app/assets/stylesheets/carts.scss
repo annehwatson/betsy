@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 td.img-thumbnail {
-  width: 20vw;
+  width: 30vw;
   display: flex;
   align-content: center;
 }
@@ -15,4 +15,14 @@ tr.cart-items {
 tr.cart-items img {
   height: 18vh;
   padding: 2vh
+}
+
+.form {
+  width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
 }

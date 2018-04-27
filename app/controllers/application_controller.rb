@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def find_product
     if params[:product_id]
-      @product = Product.find_by(id: params[:product_id])
+      @product = Product.where(retired: false).where(id: params[:product_id]).first
       head :not_found unless @product
     end
   end

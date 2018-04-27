@@ -2,18 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.flex-container {
-  margin-top: 20%;
+.product-item {
+  margin: 5%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-img {
-  max-width: 20%;
+.product-item article > img {
+  width: 20vw;
   border-radius: 5%;
-  // border: 1px solid lightgrey;
+  border: 1px solid lightgrey;
   margin: 10px;
+}
+
+.product-item > article {
+  margin: 5%;
 }
 
 .product-reviews {
@@ -82,5 +86,5 @@ div {
 }
 
 .product-item input.number-field {
-  // width: 100px;
+  width: 100px;
 }

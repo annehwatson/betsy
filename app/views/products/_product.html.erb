@@ -1,38 +1,49 @@
-<section class="flex-container">
-
-  <div>
+<section class="product-item">
+  <article>
     <h3><%= link_to item.name, item %></h3>
     <% if item.url %>
     <%= image_tag (item.url) %>
     <% else %>
     <%= url_tag (item.url) %>
     <% end %>
-    <ul>
-      <li>Categories: <% item.categories %></li>
-      <li>Price: <%= number_to_currency item.price %></li>
-      <li>Quantity:  <%= item.stock %></li>
-      <li>Add to cart:
-        <%= form_with url: add_to_cart_path(@order_item) do |f| %>
-        <%= f.hidden_field :product_id, value: item.id %>
-        <%= f.number_field :quantity, class: "number-field" %>
-        <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
-        <% end %>
-      </li>
-    </ul>
-  </div>
+  </article>
 
-  <div class='product-reviews'>
-    <p>Description: <%= item.description %></p>
-    <p><%= '%.2f' %item.average_rating %> average rating</p>
-    <p><%= item.stock %> in stock</p>
-      <%= item.reviews.count %>
-      <% if item.reviews.count == 1 %>
-      review
-      <% else %>
-      reviews
+  <article>
+  <ul>
+    <li>
+    Categories: <% item.categories %>
+    </li>
+    <li>
+      Price: <%= number_to_currency item.price %>
+    </li>
+    <li>
+    Quantity:  <%= item.stock %>
+    </li>
+    <li>Add to cart:
+      <%= form_with url: add_to_cart_path(@order_item) do |f| %>
+      <%= f.hidden_field :product_id, value: item.id%>
+      <%= f.number_field :quantity, class: "number-field" %>
+      <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
-    </p>
-  </div>
-</div>
+    </li>
+  </ul>
+  </article>
+  
+  <article>
+    <section class='product-reviews'>
+      <p>Description: <%= item.description %></p>
+      <p><% item.average_rating.times do %>
+          <%= "💧" %>
+        <% end %></p>
+      <p>
+        <%= item.reviews.count %>
+        <% if item.reviews.count == 1 %>
+          review
+        <% else %>
+          reviews
+        <% end %>
+      </p>
 
+    </section>
+  </article>
 </section>

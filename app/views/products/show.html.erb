@@ -1,19 +1,18 @@
-<%= render partial: "product", locals: { item: @product } %>
 
-<div>
-  <%= link_to "Write a Review", new_product_review_path(@product) %>
+<%= render partial: "layouts/product", locals: { item: @product } %>
+<% unless @product.retired %>
+<%= link_to "Write a Review", new_product_review_path(@product) %>
+<h4>Product Reviews</h4>
 
-  <strong>Product Reviews</strong>
 
-<!-- render :template => 'reviews/new'  -->
-<!-- would be cool to get inline review creation but I couldn't figure out how to get the review new.html.erb to work to create Review.new as a local in this render -->
+<%= render partial: 'layouts/review', locals: {object: @review} %>
 
 <br>
 <% @product.reviews.each do |r| %>
-  <% r.rating.times do %>
-    <%= "*" %>
-  <% end %></br>
-  <%= r.review %></br>
-  <%= render_date(r.created_at) %></br>
+<% r.rating.times do %>
+<%= "💧" %>
+<% end %></br>
+<%= r.review %></br>
+<%= render_date(r.created_at) %></br>
 <% end %>
-</div>
+<% end %>
