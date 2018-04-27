@@ -1,4 +1,5 @@
 <article class="merchant-list">
+  <br />
   <ul>
 <% @merchants.each do |merchant| %>
 <li><h2><%= link_to merchant.username, user_products_path(merchant) %></h2>
