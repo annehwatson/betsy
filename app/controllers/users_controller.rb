@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @products = @login_user.products
     @orders.each do |order|
       @orderitem = Orderitem.where(order_id: order.id)
+      @customer = Buyerdetail.find_by(id: order.buyerdetail_id)
     end
   end
 
