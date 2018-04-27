@@ -1,9 +1,7 @@
-
+<section class="product-show">
 <%= render partial: "layouts/product", locals: { item: @product } %>
 <% unless @product.retired %>
 <!-- <%= link_to "Write a Review", new_product_review_path(@product) %> -->
-<h4>Product Reviews</h4>
-
 
 <%= render partial: 'layouts/review', locals: {object: @review} %>
 
@@ -16,3 +14,4 @@
 <%= render_date(r.created_at) %></br>
 <% end %>
 <% end %>
+</section>
