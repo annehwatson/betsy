@@ -10,7 +10,7 @@
     <td>
       <%= form_with url: cart_path(@order), method: :patch do |f| %>
       <%= f.hidden_field :product_id, value: product.id%>
-      <%= f.number_field :quantity, :style => "width:10vw;" %>
+      <%= f.number_field :quantity, min: 0, :style => "width:10vw;" %>
 
       <%= submit_tag "update quantity", class: "hollow button primary qty" %>
       <% end %>

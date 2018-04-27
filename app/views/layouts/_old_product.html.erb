@@ -18,7 +18,7 @@
     <li>
       <%= form_with url: add_to_cart_path do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
-      <%= f.number_field :quantity, :style => "width:100px;" %>
+      <%= f.number_field :quantity, min: 0, :style => "width:100px;" %>
       <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
     </li>
