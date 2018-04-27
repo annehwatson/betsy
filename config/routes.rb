@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post 'carts/:id/checkout', to: 'carts#finalize'
 
   get 'order/:id', to: 'carts#order_details', as: :order
+  patch 'order/:id', to: 'carts#order_status'
 
 
 end

@@ -1,58 +1,84 @@
 
-<h3>Merchant Summary</h3>
+
+
+<%= render partial: "layouts/error_messages", locals: { model: @login_user } %>
+
+
+
+<section class="merchant-display">
 <section class='user-info'>
+  <img src="https://placeimg.com/480/480/a" class="merchant-img" alt="placeholder image"/>
+  <h3>Merchant Summary</h3>
+    <p>Joined site <%= render_date @login_user.created_at %></p>
 
-  <%= render partial: "layouts/error_messages", locals: { model: @login_user } %>
+    <p>Name: <span><%= @login_user.name %></span></p>
+    <p>Username: <span><%= @login_user.username %></span></p>
+    <p>Email: <span><%= @login_user.email %></span></p>
 
-<article>
-  <p>Joined site <%= render_date @login_user.created_at %></p>
+    <%= link_to "Back to All Products", products_path, class: "hollow button" %>
 
-  <p>Name: <span><%= @login_user.name %></span></p>
-  <p>Username: <span><%= @login_user.username %></span></p>
-  <p>Email: <span><%= @login_user.email %></span></p>
-
-  <%= link_to "Back to All Products", products_path, class: "hollow button" %>
-
-  <%= link_to "Add New Product", new_product_path, class: 'hollow button'  %>
-</article>
+    <%= link_to "Add New Product", new_product_path, class: 'hollow button'  %>
 </section>
 
-  <article class="table">
-    <table>
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Stock</th>
-          <th>Price</th>
-          <th>Average Rating</th>
-          <th>Reviews</th>
-          <th>Retire Product</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @login_user.products.each do |p| %>
+<section class="tabset">
+  <!-- Tab 1 -->
+  <input type="radio" name="tabset" id="tab1" aria-controls="products" checked>
+  <label for="tab1">Products</label>
+  <!-- Tab 2 -->
+  <input type="radio" name="tabset" id="tab2" aria-controls="orders">
+  <label for="tab2">Order Fulfillment</label>
+  <!-- Tab 3 -->
+  <input type="radio" name="tabset" id="tab3" aria-controls="accounting">
+  <label for="tab3">Accounting</label>
+
+  <section class="tab-panels">
+    <section id="products" class="tab-panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Average Rating</th>
+            <th>Reviews</th>
+            <th>Retire Product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @login_user.products.each do |p| %>
           <tr>
             <td><%= link_to p.name, product_path(p.id) %></td>
             <td><%= p.stock %></td>
             <td>$<%= sprintf("%.02f", p.price) %></td>
 
             <td><% p.average_rating.times do %>
-                <%= "💧" %>
+              <%= "💧" %>
               <% end %>
             </td>
 
             <td><%= p.reviews.count %></td>
             <td>
               <% if p.retired? %>
-            <%= button_to "show product", product_path(p), params: { product: { retired: false }}, method: :patch, class: "button" %>
-
-            <!-- users_path(params.merge(format: :pdf)) -->
-            <% else %>
-            <%= button_to "hide product", product_path(p), params: { product: { retired: true }}, method: :patch, class: "button" %>
-            <% end %>
+              <%= button_to "show product", product_path(p), params: { product: { retired: false }}, method: :patch, class: "button" %>
+              <% else %>
+              <%= button_to "hide product", product_path(p), params: { product: { retired: true }}, method: :patch, class: "button" %>
+              <% end %>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </article>
+          <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="orders" class="tab-panel">
+      <% @orders.each do |order| %>
+      <%= link_to "mark shipped", order_path(order), params: {order: {status: :shipped}}, method: :patch, class: "button" %>
+      <% end %>
+    </section>
+    <section id="accounting" class="tab-panel">
+      <h2>Earnings</h2>
+    </section>
+  </section>
+
+</section>
+</section

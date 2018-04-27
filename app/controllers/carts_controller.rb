@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-before_action :reload_order, only: [:show]
-skip_before_action :require_login
+  before_action :reload_order, only: [:show]
+  skip_before_action :require_login
 
   def show
     @order
@@ -67,14 +67,15 @@ skip_before_action :require_login
       @order.assign_attributes(buyerdetail_id: @paymentinfo.id)
 
       if @order.save
-        @order.products.each do |product|
+        @completedorder = @order
+        @completedorder.products.each do |product|
           quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
           product.decrement_stock(quantity)
         end
         flash[:status] = :success
-        flash[:result_text] = "Successfully completed Order # #{@order.id}"
+        flash[:result_text] = "Successfully completed Order # #{@completedorder.id}"
 
-        redirect_to order_path(@order)
+        redirect_to order_path(@completedorder)
       else
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order."
@@ -91,6 +92,22 @@ skip_before_action :require_login
     @customer = Buyerdetail.find_by(id: @order.buyerdetail_id)
   end
 
+  def order_status
+    @order = Order.find(params[:id])
+    if @order.status != :complete
+      @order.status = params[:order][:status]
+      if @order.save
+        flash[:status] = :success
+        flash[:result_text] = "You have successfully cancelled this order."
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Could not cancel order."
+        flash[:messages] = @order.errors.messages
+      end
+    end
+    redirect_back fallback_location: order_path(@order)
+  end
+
   private
   def payment_params
     params.require(:buyerdetail).permit(:email, :mailing_address, :buyer_name, :card_number, :expiration, :cvv, :zipcode)
@@ -98,9 +115,5 @@ skip_before_action :require_login
 
   def reload_order
     @order.reload
-  end
-
-  def clear_cart
-    @order = Order.find_by(session[:order_id])
   end
 end

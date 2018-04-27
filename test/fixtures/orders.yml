@@ -2,6 +2,8 @@
 
 order_one:
   status: pending
+  buyerdetail_id: ada
 
 order_two:
-  status: pending
+  status: paid
+  buyerdetail_id: ada

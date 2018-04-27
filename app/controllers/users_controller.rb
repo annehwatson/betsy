@@ -7,7 +7,10 @@ class UsersController < ApplicationController
     @merchants = User.all
   end
 
-  def show; end
+  def show
+    @orders = @login_user.orders
+    @products = @login_user.products
+  end
 
 private
   def user_params
