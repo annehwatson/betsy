@@ -24,7 +24,7 @@
           <th>Product</th>
           <th>Stock</th>
           <th>Price</th>
-          <th>Reviews</th>
+          <th>Average Rating</th>
         </tr>
       </thead>
       <tbody>
@@ -33,8 +33,9 @@
             <td><%= link_to p.name, product_path(p) %></td>
             <td><%= p.stock %></td>
             <td>$<%= sprintf("%.02f", p.price) %></td>
-            <td><%= p.reviews.count %></td>
-
+            <td><% p.average_rating.times do %>
+            <%= "💧" %>
+              <% end %></td>
           </tr>
         <% end %>
       </tbody>

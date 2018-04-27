@@ -17,12 +17,10 @@
  *= require foundation_and_overrides
 
  */
-h1 {
-font-family: 'Lora', serif;
-}
 
-body {
-  font-family: 'Gothic A1', sans-serif;
+
+*  {
+ font-family: 'Roboto Mono', monospace;
 }
 
 body ul {

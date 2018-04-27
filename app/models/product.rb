@@ -21,7 +21,7 @@ class Product < ApplicationRecord
   end
 
   def average_rating
-    average = 0.0
+    average = 0
     count = 0
     reviews.each do |r|
       if r.rating > 0
