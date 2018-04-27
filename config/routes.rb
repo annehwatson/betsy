@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   get '/login', to: 'sessions#new', as: 'login'
-  delete '/logout', to: 'sessions#logout', as: 'logout'
+  get '/logout', to: 'sessions#logout', as: 'logout'
   get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
 
   resources :carts, only: [:show, :edit, :update]
