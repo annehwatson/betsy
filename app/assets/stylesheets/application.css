@@ -35,7 +35,6 @@ h1 img {
 
 nav {
   background-color: whitesmoke;
-
 }
 
 nav ul {
@@ -62,6 +61,7 @@ nav ul {
 
   nav ul ul {
     display: none;
+    position: absolute;
   }
 }
 
