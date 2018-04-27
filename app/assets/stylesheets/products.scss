@@ -2,26 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.product-item {
+.flex-container {
+  margin-top: 20%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  background-color: whitesmoke;
-  border: 1px solid lightgrey;
+  flex-wrap: wrap;
+  background-color: lightgrey;
 }
 
-.product img {
-  border-radius: 2%;
-}
-
-.product-item > article {
-  width: 200px;
-  line-height: 75px;
+img {
+  max-width: 20%;
+  border-radius: 5%;
+  // border: 1px solid lightgrey;
   margin: 10px;
 }
 
+.flex-container > div {
+    box-shadow: 1px 1px 3px 3px rgba(0,0,0,0.2);
+    height: 350px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 4.15%;
+    position: relative;
+  // display: inline-block;
+  // max-width: 20%;
+  // margin: 10px;
+  // text-align: center;
+  // // line-height: 75px;
+  // // font-size: 30px;
+  // background-color: whitesmoke;
+  // border: 1px solid lightgrey;
+}
+
 .product-reviews {
-  width: 400px;
+  // width: 400px;
 }
 
 .parallax-1 {
@@ -86,5 +100,5 @@ div {
 }
 
 .product-item input.number-field {
-  width: 100px;
+  // width: 100px;
 }
