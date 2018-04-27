@@ -65,15 +65,14 @@ skip_before_action :require_login
       @order.assign_attributes(buyerdetail_id: @paymentinfo.id)
 
       if @order.save
-        @completedorder = @order
-        @completedorder.products.each do |product|
+        @order.products.each do |product|
           quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
           product.decrement_stock(quantity)
         end
         flash[:status] = :success
-        flash[:result_text] = "Successfully completed Order # #{@completedorder.id}"
+        flash[:result_text] = "Successfully completed Order # #{@order.id}"
 
-        redirect_to order_path(@completedorder)
+        redirect_to order_path(@order)
       else
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order."
