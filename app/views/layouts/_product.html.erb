@@ -22,7 +22,7 @@
     <li>Add to cart:
       <%= form_with url: add_to_cart_path(@order_item) do |f| %>
       <%= f.hidden_field :product_id, value: item.id%>
-      <%= f.number_field :quantity, class: "number-field" %>
+      <%= f.number_field :quantity, min: 0, class: "number-field" %>
       <%= submit_tag "add to cart", class: "hollow button primary", method: :post %>
       <% end %>
     </li>
@@ -31,9 +31,15 @@
 
   <article class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <p><% item.average_rating.times do %>
-          <%= "💧" %>
-        <% end %></p>
+      <p>
+        <% if item.average_rating == 0 %>
+          Be the first to rate this product!
+        <% else %>
+          averate rating
+          <% item.average_rating.times do %>
+            <%= "💧" %>
+          <% end %></p>
+        <% end %>
       <p>
         <%= item.reviews.count %>
         <% if item.reviews.count == 1 %>
