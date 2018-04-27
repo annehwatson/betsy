@@ -11,7 +11,9 @@
   <article>
   <ul>
     <li>
-    Categories: <% item.categories %>
+    Categories: <ul><% item.categories.each do |category| %>
+      <%= link_to category.name, category_products_path(category) %>
+      <% end %>
     </li>
     <li>
       Price: <%= number_to_currency item.price %>

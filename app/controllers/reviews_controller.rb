@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
 
     @review.product_id = @product.id
     #added this line back
-    if session[:user_id] = @product.user_id
+    if session[:user_id] == @product.user_id
       flash[:status] = :error
       flash[:result_text] = "You can't review your own products!"
       redirect_to product_path(@review.product_id)
