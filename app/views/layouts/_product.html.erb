@@ -30,7 +30,14 @@
       <h4> average rating <% item.average_rating.times do %>
           <%= "💧" %>
         <% end %> </h4>
-      <p> <%= item.reviews.count %> reviews </p>
+      <p>
+        <%= item.reviews.count %>
+        <% if item.reviews.count == 1 %>
+          review
+        <% else %>
+          reviews
+        <% end %>
+      </p>
     </section>
   </article>
 </section>
