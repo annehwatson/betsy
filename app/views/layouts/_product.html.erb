@@ -38,11 +38,11 @@
         </h4>
       <% end %>
       <p>
-        <%= item.reviews.count %>
+
         <% if item.reviews.count == 1 %>
-          review
+          <%= link_to("#{item.reviews.count} review", product_path(item)) %>
         <% else %>
-          reviews
+          <%= link_to("#{item.reviews.count} reviews", product_path(item)) %>
         <% end %>
       </p>
     </section>
