@@ -27,9 +27,16 @@
   <article>
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <h4> average rating <% item.average_rating.times do %>
-          <%= "💧" %>
-        <% end %> </h4>
+      <% if item.average_rating == 0 %>
+        <h4>Be the first to rate this product!</h4>
+      <% else %>
+        <h4>
+          average rating
+          <% item.average_rating.times do %>
+            <%= "💧" %>
+          <% end %>
+        </h4>
+      <% end %>
       <p>
         <%= item.reviews.count %>
         <% if item.reviews.count == 1 %>
