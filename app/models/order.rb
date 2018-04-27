@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   has_many :orderitems
   has_many :products, through: :orderitems
   has_many :users, through: :products
+  has_many :buyerdetails
 
 
   def find_existing(orderitem)

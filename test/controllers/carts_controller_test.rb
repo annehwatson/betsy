@@ -128,7 +128,8 @@ describe CartsController do
     end
 
     it "creates a Buyer Detail record" do
-      order = Order.first
+      get root_path
+      order_id = session[:order_id]
 
       payment_info = {
         email: "test@test.com",
@@ -138,13 +139,16 @@ describe CartsController do
         expiration: "01/01",
         cvv: "1234",
         zipcode: "12345",
-        order_id: order.id
+        order_id: order_id
       }
       buyer = Buyerdetail.new(payment_info)
       buyer.must_be :valid?
       buyer.save
-      post checkout_path(order.id), params: { buyerdetail: payment_info }
-      must_redirect_to order_path(order)
+      post checkout_path(order_id), params: { buyerdetail: payment_info }
+
+      result = Buyerdetail.find_by(order_id: order_id).id
+
+      result.must_equal buyer.id
     end
 
     it "responds with bad_request if the order has errors" do

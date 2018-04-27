@@ -18,6 +18,8 @@
   <%= f.label :zipcode %>
   <%= f.text_field :zipcode %>
 
+  <%= f.hidden_field :order_id, value: @order.id %>
+
   <%= f.submit "Checkout"%>
 
   <% end %>

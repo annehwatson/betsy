@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426024204) do
+ActiveRecord::Schema.define(version: 20180427020251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,10 @@ ActiveRecord::Schema.define(version: 20180426024204) do
     t.string "expiration"
     t.string "cvv"
     t.string "zipcode"
-    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_buyerdetails_on_order_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 20180426024204) do
     t.string "provider", null: false
   end
 
+  add_foreign_key "buyerdetails", "orders"
   add_foreign_key "orders", "buyerdetails"
   add_foreign_key "products", "users"
   add_foreign_key "reviews", "products"
