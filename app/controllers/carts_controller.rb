@@ -103,8 +103,4 @@ skip_before_action :require_login
   def reload_order
     @order.reload
   end
-
-  def clear_cart
-    @order = Order.find_by(session[:order_id])
-  end
 end
