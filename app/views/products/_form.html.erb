@@ -4,7 +4,7 @@
 </h4>
 
 <%= render partial: "layouts/error_messages", locals: { model: @product } %>
-
+<section class='form'>
 <%= form_for @product do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -28,3 +28,4 @@
 
   <%= f.submit class: "button" %>
 <% end %>
+</section>
