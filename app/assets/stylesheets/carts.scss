@@ -20,7 +20,19 @@ tr.cart-items img {
 
 .checkout {
   padding: 20px;
+  background-image: image-url('shoppingtags.jpg');
+  background-position: right;
+  opacity: 0.65;
 }
+
+.cart-products {
+  padding: 20px;
+  background-image: image-url('shoppingtags.jpg');
+  background-position: left;
+  opacity: 0.65;
+}
+
+
 
 .form {
   width: 100%;

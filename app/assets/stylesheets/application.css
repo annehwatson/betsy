@@ -118,6 +118,9 @@ footer {
 }
 
 .product-list {
+  background-image: url('shoppingtags.jpg');
+  background-position: bottom;
+  background-size: contain;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -141,7 +144,7 @@ footer {
 .product-item {
   border: 2px groove lightgrey;
   box-sizing: border-box;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .product-item input.number-field {
