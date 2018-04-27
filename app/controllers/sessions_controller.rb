@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   def logout
     if session[:user_id]
-      session[:user_id] = nil
+      session.delete(:user_id)
       flash[:result_text] = "Successfully logged out"
       redirect_to root_path
     end
