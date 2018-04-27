@@ -37,6 +37,7 @@ nav {
 
 nav ul {
   list-style-type: none;
+  z-index: 8;
 }
 
 @media (min-width: 800px) {
@@ -44,10 +45,12 @@ nav ul {
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 2em;
+      z-index: 8;
     }
 
     .menu li:first-of-type {
       align-self: flex-start;
+      z-index: 8;
     }
 
   .menu-item-has-children > a:after{
