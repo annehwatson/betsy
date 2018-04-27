@@ -6,14 +6,16 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  line-height: 1.75em;
   font-weight: bold;
   color: #374785;
   background-color: whitesmoke;
   border: 1px solid lightgrey;
   width: 30vw;
   align-items: center;
-  height: 85vh;
+}
+
+.user-info h3  {
+  padding: 2vw;
 }
 
 .user-info p {
@@ -120,4 +122,6 @@ section.merchant-display {
 
 img.merchant-img {
   border-radius: 80%;
+  max-width: 20vw;
+  margin: 5vh 0;
 }
