@@ -34,11 +34,9 @@ skip_before_action :require_login
   def add_to_cart
     flash[:status] = :failure
     quantity = params[:quantity].to_i
-    if @product.sufficient_stock(quantity)
+    if @product.sufficient_stock(quantity) && quantity != 0
       orderitem = Orderitem.new(product: @product, order_id: @order.id, quantity: quantity)
       orderitem = @order.find_existing(orderitem)
-
-      puts "OrderItem ID after find_existing: #{orderitem.id}"
 
       if orderitem.save
         flash[:status] = :success
@@ -47,7 +45,7 @@ skip_before_action :require_login
         flash[:messages] = orderitem.errors.messages
       end
     else
-      flash[:result_text] = "Could not add item to cart"
+      flash[:result_text] = "Could not add #{quantity} quantity of #{@product.name} to cart"
       flash[:messages] = @product.errors.messages
     end
     redirect_back fallback_location: product_path(@product)
