@@ -2,27 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.product-list {
-  margin: 5%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.product-list article > img {
-  width: 20vw;
-  border-radius: 5%;
-  border: 1px solid lightgrey;
-  margin: 10px;
-}
-
-.product-item > article {
-  margin: 5%;
-}
-
-.product-reviews {
-  width: 400px;
-}
 
 .parallax-1 {
     /* The image used */
@@ -83,8 +62,4 @@ div {
   background-size: cover;
   position: relative;
   opacity: 0.65;
-}
-
-.product-item input.number-field {
-  width: 100px;
 }

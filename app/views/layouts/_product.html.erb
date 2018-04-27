@@ -1,4 +1,4 @@
-<article class="product-item">
+<section class='product-item'>
   <article class='testing'>
     <h3><%= link_to item.name, item %></h3>
     <% if item.url %>
@@ -29,9 +29,7 @@
   </ul>
   </article>
 
-  <article>
-
-    <section class='product-reviews'>
+  <article class='product-reviews'>
       <p>Description: <%= item.description %></p>
       <p><% item.average_rating.times do %>
           <%= "💧" %>
@@ -44,7 +42,5 @@
           reviews
         <% end %>
       </p>
-    </section>
-
   </article>
-</article>
+</section>
