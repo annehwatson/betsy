@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-  before_action :reload_order, only: [:show]
-  skip_before_action :require_login
+before_action :reload_order, only: [:show]
+skip_before_action :require_login
 
   def show
     @order
