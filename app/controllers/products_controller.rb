@@ -20,6 +20,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.new
+  end
+
   def new
     @product = Product.new(user_id: params[:user_id])
   end

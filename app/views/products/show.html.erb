@@ -3,8 +3,7 @@
 <%= link_to "Write a Review", new_product_review_path(@product) %>
 <h4>Product Reviews</h4>
 
-<!-- render :template => 'reviews/new'  -->
-<!-- would be cool to get inline review creation but I couldn't figure out how to get the review new.html.erb to work to create Review.new as a local in this render -->
+<%= render partial: 'layouts/review', locals: {object: @review} %>
 
 </br>
 <% @product.reviews.each do |r| %>
