@@ -1,14 +1,17 @@
 <%= form_for @paymentinfo, url: checkout_path do |f| %>
 <h3>Personal Information</h3>
+<article class="form">
   <%= f.label :buyer_name, 'Name' %>
   <%= f.text_field :buyer_name %>
   <%= f.label :email %>
   <%= f.email_field :email %>
   <%= f.label :mailing_address %>
   <%= f.text_field :mailing_address %>
+</article>
 <h3>Payment Information</h3>
+<article class="form">
   <%= f.label :card_number %>
-  <%= f.number_field :card_number, pattern: '/[0-9]{12,19}/', message: 'CC must be a number, 12- 19 digits' %>
+  <%= f.number_field :card_number, pattern: '/[0-9]{12,19}/', message: 'CC must be a number, 12- 19 digits in length' %>
   <%= f.label :expiration %>
   <%= f.date_field :expiration, as: :date %>
 
@@ -21,3 +24,4 @@
   <%= f.submit "Checkout"%>
 
   <% end %>
+</article>
