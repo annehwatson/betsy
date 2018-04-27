@@ -2,14 +2,34 @@
   <ul>
     <li>Order#: <%= @order.id%></li>
     <li>Status: <%= @order.status %></li>
+    <li>Checkout Date: <%= render_date(@order.updated_at) %>
     <li>Name: <%= @customer.buyer_name %> </li>
     <li>Email: <%= @customer.email %></li>
     <li>
       <section class="order-items checkout">
-        <h3>Ordered Products</h3>
+        <table>
+        <tr><h3>Ordered Products</h3></tr>
+        <tr>
+          <th width="400"></th>
+          <th>Product</th>
+          <th width="200">Price</th>
+          <th></th>
+          <th>Quantity</th>
+          <% if quantity_edit?(request.fullpath) %>
+          <th>Change Quantity</th>
+          <th>Remove Item</th>
+          <% else %>
+          <th>Subtotal</th>
+          <% end %>
+        </tr>
+
         <%= render partial: "layouts/order_products", collection: @orderitems, as: :item %>
+        <table>
       </section>
     </li>
-        <!-- verified model works, leaving view for other team members -->
-    <li> Total</li>
+    <li>Tax: <%= number_to_currency @paid_order.tax %></li>
+    <li> Total: <%= number_to_currency @order.order_total %></li>
 </ul>
+<section>
+  <%= link_to "cancel order", order_path(order), params: {order: {status: :cancel}}, method: :patch, class: "button" %>
+</section>

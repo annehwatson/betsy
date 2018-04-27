@@ -22,65 +22,68 @@ describe CartsController do
   end
 
   describe "update" do
-    #kat will poke this
-    # it "updates an existing order with valid data" do
-    #   order = Order.first
-    #   order_item = order.orderitems.first
-    #   order_item.must_be :valid?
-    #
-    #   order_item.product.id.must_equal 6
-    #
-    #
-    #   old_order_item_quantity = order_item.quantity
-    #   old_order_item_quantity.must_equal 3
-    #
-    #   new_quantity = 6
-    #
-    #   patch cart_path(order), params: { product_id: order_item.product.id, quantity: new_quantity, order_id: order.id }
-    #   order.reload
-    #   result = order_item.quantity
-    #   result.must_equal new_quantity
-    #
-    # end
-    #
-    # it "sends failure for invalid data" do
-    #   order = Order.first
-    #   order_item = order.orderitems.first
-    #   old_order_item_quantity = order_item.quantity
-    #   new_quantity = "three"
-    #
-    #   patch cart_path(order), params: { quantity: new_quantity }
-    #   order.reload
-    #   result = order_item.quantity
-    #   result.wont_equal new_quantity
-    # end
-    #
-    # it "removes a product from the cart" do
-    #   order = Order.first
-    #   order_item_id = order.orderitems.first.id
-    #   new_quantity = 0
-    #
-    #   patch cart_path(order), params: { quantity: new_quantity }
-    #   order.reload
-    #   result = order.orderitems
-    #   result.wont_include order_item_id
-    # end
-    #
-    # it "changes the quantity of an existing product in the cart" do
-    #   order = Order.first
-    #   order_item = order.orderitems.first
-    #   old_order_item_quantity = order_item.quantity
-    #   new_quantity = 1
-    #
-    #   patch cart_path(order), params: { quantity: new_quantity }
-    #   order.reload
-    #   result = order_item.quantity
-    #   result.must_equal new_quantity
-    # end
-    #
-    # it "sends not_found for an order that does not exist" do
-    #   skip
-    # end
+    kat will poke this
+    it "updates an existing order with valid data" do
+      get root_path
+      order = Order.find(session[:order_id])
+
+      order.must_be :valid?
+      order_item = order.orderitems.first
+      order_item.must_be :valid?
+
+      order_item.product.id.must_equal 6
+
+
+      old_order_item_quantity = order_item.quantity
+      old_order_item_quantity.must_equal 3
+
+      new_quantity = 6
+
+      patch cart_path(order), params: { product_id: order_item.product.id, quantity: new_quantity, order_id: order.id }
+      order.reload
+      result = order_item.quantity
+      result.must_equal new_quantity
+
+    end
+
+    it "sends failure for invalid data" do
+      order = Order.first
+      order_item = order.orderitems.first
+      old_order_item_quantity = order_item.quantity
+      new_quantity = "three"
+
+      patch cart_path(order), params: { quantity: new_quantity }
+      order.reload
+      result = order_item.quantity
+      result.wont_equal new_quantity
+    end
+
+    it "removes a product from the cart" do
+      order = Order.first
+      order_item_id = order.orderitems.first.id
+      new_quantity = 0
+
+      patch cart_path(order), params: { quantity: new_quantity }
+      order.reload
+      result = order.orderitems
+      result.wont_include order_item_id
+    end
+
+    it "changes the quantity of an existing product in the cart" do
+      order = Order.first
+      order_item = order.orderitems.first
+      old_order_item_quantity = order_item.quantity
+      new_quantity = 1
+
+      patch cart_path(order), params: { quantity: new_quantity }
+      order.reload
+      result = order_item.quantity
+      result.must_equal new_quantity
+    end
+
+    it "sends not_found for an order that does not exist" do
+      skip
+    end
   end
 
   describe "add_to_cart" do
@@ -130,6 +133,9 @@ describe CartsController do
     it "creates a Buyer Detail record" do
       get root_path
       order_id = session[:order_id]
+      order = Order.find(session[:order_id])
+
+      order.must_be :valid?
 
       payment_info = {
         email: "test@test.com",
@@ -144,7 +150,7 @@ describe CartsController do
       buyer = Buyerdetail.new(payment_info)
       buyer.must_be :valid?
       buyer.save
-      post checkout_path(order_id), params: { buyerdetail: payment_info }
+      post checkout_path(order), params: { buyerdetail: payment_info }
 
       result = Buyerdetail.find_by(order_id: order_id).id
 

@@ -15,4 +15,30 @@ class Order < ApplicationRecord
     end
     return orderitem
   end
+
+
+
+  def subtotal(orderitem)
+    price = orderitem.product.price
+
+    orderitem.quantity * price
+  end
+
+  def total
+    raw_total = 0
+    self.orderitems.each do |orderitem|
+      raw_total += subtotal(orderitem)
+
+    end
+    raw_total.round(2)
+  end
+
+  def tax
+    (total * 0.104).round(2)
+  end
+
+  def order_total
+    total + tax
+  end
+
 end

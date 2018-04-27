@@ -30,7 +30,8 @@
         </li>
         <% if @login_user %>
         <!-- <li><i class="fi-torso-business large"></i></li> -->
-        <li class="menu-item-has-children"><%= link_to "Logged in as #{@login_user.username}", user_path(@login_user) %>
+        <li class="menu-item-has-children">
+          <%= link_to "Logged in as #{@login_user.username}", user_path(@login_user) %>
           <ul>
             <li><%= link_to 'Dashboard', user_path(@login_user) %></li>
             <li><%= link_to "Logout", logout_path, method: :delete%></li>

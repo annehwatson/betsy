@@ -59,26 +59,23 @@ skip_before_action :require_login
   end
 
   def finalize
-    puts "Order attributes before Buyerdetail: #{@order.attributes}"
     @paymentinfo = Buyerdetail.new(payment_params)
     @paymentinfo.assign_attributes(order_id: @order.id)
-    puts "Buyerdetail order_id: #{@paymentinfo.order_id}"
+
     if @paymentinfo.save
       @order.status = :paid
       @order.assign_attributes(buyerdetail_id: @paymentinfo.id)
 
-      puts "Order attributes before save #{@order.attributes}"
       if @order.save
-
-        puts "Order attributes after save #{@order.attributes}"
-        @order.products.each do |product|
+        @completedorder = @order
+        @completedorder.products.each do |product|
           quantity = Orderitem.find_by(order_id: @order.id, product_id: product.id).quantity
           product.decrement_stock(quantity)
         end
         flash[:status] = :success
-        flash[:result_text] = "Successfully completed Order # #{@order.id}"
+        flash[:result_text] = "Successfully completed Order # #{@completedorder.id}"
 
-        redirect_to order_path(@order)
+        redirect_to order_path(@completedorder)
       else
         flash.now[:status] = :failure
         flash.now[:result_text] = "Could not complete order."
