@@ -25,16 +25,25 @@
           <th>Stock</th>
           <th>Price</th>
           <th>Reviews</th>
+          <th>Retire Product</th>
         </tr>
       </thead>
       <tbody>
         <% @login_user.products.each do |p| %>
           <tr>
-            <td><%= link_to p.name, product_path(p) %></td>
+            <td><%= link_to p.name, product_path(p.id) %></td>
             <td><%= p.stock %></td>
             <td>$<%= sprintf("%.02f", p.price) %></td>
             <td><%= p.reviews.count %></td>
+            <td>
+              <% if p.retired? %>
+            <%= button_to "show product", product_path(p), params: { product: { retired: false }}, method: :patch, class: "button" %>
 
+            <!-- users_path(params.merge(format: :pdf)) -->
+            <% else %>
+            <%= button_to "hide product", product_path(p), params: { product: { retired: true }}, method: :patch, class: "button" %>
+            <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
