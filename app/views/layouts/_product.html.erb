@@ -27,10 +27,24 @@
   <article>
     <section class='product-reviews'>
       <p>Description: <%= item.description %></p>
-      <h4> average rating <% item.average_rating.times do %>
-          <%= "💧" %>
-        <% end %> </h4>
-      <p> <%= item.reviews.count %> reviews </p>
+      <% if item.average_rating == 0 %>
+        <h4>Be the first to rate this product!</h4>
+      <% else %>
+        <h4>
+          average rating
+          <% item.average_rating.times do %>
+            <%= "💧" %>
+          <% end %>
+        </h4>
+      <% end %>
+      <p>
+
+        <% if item.reviews.count == 1 %>
+          <%= link_to("#{item.reviews.count} review", product_path(item)) %>
+        <% else %>
+          <%= link_to("#{item.reviews.count} reviews", product_path(item)) %>
+        <% end %>
+      </p>
     </section>
   </article>
 </section>

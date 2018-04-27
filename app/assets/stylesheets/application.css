@@ -115,7 +115,7 @@ li > i:after {
     font-size: 1.5em;
     color: rgb(91, 22, 115);
 }
-  /* .icon-cart {
+  .icon-cart {
     width: 48px;
     height: 48px;
     position: relative;
@@ -224,7 +224,7 @@ li > i:after {
     position: absolute;
     left: 200%;
     bottom: 0;
-  } */
+  }
 
 footer {
   font-size: 0.5em;
