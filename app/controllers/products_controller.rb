@@ -12,6 +12,9 @@ class ProductsController < ApplicationController
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products
+    elsif params[:user_id]
+      @merchant = User.find(params[:user_id])
+      @products = @merchant.products
     else
       @products = Product.all
     end
