@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   get '/login', to: 'sessions#new', as: 'login'
+  # used get for action on logout because we could not resolve an issue, per
+  # instructor's suggestion
   get '/logout', to: 'sessions#logout', as: 'logout'
   get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
 
