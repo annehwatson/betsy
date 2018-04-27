@@ -25,10 +25,12 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = @login_user.id
     if @product.save
-      flash[:success] = "Product added successfully"
+      flash[:status] = :success
+      flash[:result_text] = "Product added successfully"
       redirect_to products_path
     else
-      flash.now[:failure] = "Cound not add product"
+      flash.now[:status] = :failure
+      flash.now[:result_text] = "Could not add product"
       render :new, status: :bad_request
     end
   end

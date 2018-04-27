@@ -14,10 +14,13 @@ class CategoriesController < ApplicationController
       @category = Category.new(category_params)
 
       if @category.save
-        flash[:success] = "Successfully created #{@category.name}"
+        flash[:status] = :success
+        flash[:result_text] =  "Successfully created #{@category.name}"
         redirect_to categories_path
       else
-        flash.now[:error] = "Validations failed"
+        flash.now[:status] = :error
+        flash.now[:result_text] = "Validations failed"
+        flash.now[:messages] = @category.errors.messages
         render :new, status: :bad_request
       end
   end
@@ -29,6 +32,8 @@ class CategoriesController < ApplicationController
   def update
       @category.assign_attributes(category_params)
       if @category.save
+        flash[:status] = :success
+        flash[:result_text] = "Successfully updated #{@category.name}"
         redirect_to category_path(@category)
       else
         render :edit, status: :bad_request
@@ -37,7 +42,8 @@ class CategoriesController < ApplicationController
 
   def destroy
       @category.destroy
-      flash[:success] = "Successfully destroyed #{@category.name}"
+      flash[:status] = :success
+      flash[:result_text] =  "Successfully destroyed #{@category.name}"
       redirect_to categories_path
   end
 

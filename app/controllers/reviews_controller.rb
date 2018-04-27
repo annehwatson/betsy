@@ -9,23 +9,21 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    # @review.product = @product
-    # if @review.save
-    #   flash[:success] = "Successfully created review"
-    #   redirect_to product_path(@review.product)
-    # else
-    #   flash.now[:error] = "Could not create new review"
-    #   render :new, status: :bad_request
-    @review.product_id = @product.id #added this line back
-    if @user && @user.products.include?(@review.product)
-      flash[:error] = "You can't review your own products!"
-      redirect_to product_path(@review.product)
+
+    @review.product_id = @product.id
+    #added this line back
+    if session[:user_id] = @product.user_id
+      flash[:status] = :error
+      flash[:result_text] = "You can't review your own products!"
+      redirect_to product_path(@review.product_id)
 
     elsif @review.save
-      flash[:success] = "Successfully created review"
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created review"
       redirect_to product_path(@product)
     else
-      flash.now[:error] = "Could not create Review"
+      flash.now[:status] = :error
+      flash.now[:result_text] = "Could not create Review"
       render :new, status: :bad_request
     end
   end
